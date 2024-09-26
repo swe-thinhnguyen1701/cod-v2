@@ -1,0 +1,827 @@
+:root {
+  --gold-color: #c28f2c;
+  --dark-gold: #cf982a;
+  --nav-background-color: #191c27;
+  --hover-background-color: rgba(128, 128, 128, 0.2);
+  --talent-width: 70px;
+  --talent-height: 60px;
+  --talent-core-width: 120px;
+  --talent-core-height: 90px;
+  --white-color: #fff;
+  --purple-color: #6f0a6f;
+  --blue-color: #198ac3;
+  --talent-icon-conatiner-background: #220000;
+  --talent-primary-color: #930708;
+  --talent-secondary-color: #844f23;
+  --talent-thirdary-color: #007a92;
+  --talent-gradient-color: #161616;
+  --hero-skill-height: 500px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.2rem;
+  margin: 0 auto;
+}
+
+/* MARGIN & PADDING */
+.pt {
+  padding-top: 99px;
+}
+
+/* logo */
+.logo-container {
+  width: 120px;
+}
+
+.logo {
+  width: 100%;
+}
+
+/* List */
+.list {
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+
+.list-item {
+  list-style: none;
+}
+
+.list--inline {
+  display: flex;
+  gap: 25px;
+}
+
+/* Link */
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.link:visited {
+  color: inherit;
+}
+
+/* PAGE */
+.page {
+  min-height: 100vh;
+  max-width: 1900px;
+  padding-top: 63px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+
+@media screen and (min-width: 768px) {
+  .page {
+    padding-top: 68px;
+  }
+}
+
+/* NAV BAR */
+header {
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+}
+
+.nav {
+  background-color: var(--nav-background-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  padding-right: 10px;
+  position: relative;
+}
+
+.nav-list.open {
+  opacity: 1;
+}
+
+.menu-toggle {
+  cursor: pointer;
+}
+
+.menu-icon {
+  color: var(--white-color);
+  border: solid 1px var(--nav-background-color);
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 2rem;
+}
+
+.menu-icon:hover {
+  border-color: var(--white-color);
+}
+
+.nav-list {
+  position: absolute;
+  top: 61px;
+  right: 0;
+  width: 100%;
+  height: 96vh;
+  padding: 15px 0;
+  background-color: var(--nav-background-color);
+  transform: translateY(-100%);
+  transition: transform 0.5s ease-in-out;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav-list.open {
+  transform: translateY(0);
+  /* Slide onscreen */
+  opacity: 1;
+  /* Show menu */
+  pointer-events: all;
+  /* Allow interaction */
+}
+
+.nav-list .list-item {
+  margin-bottom: 20px;
+  padding: 13px 20px;
+  list-style: none;
+}
+
+.nav-list .list-item .link {
+  color: var(--white-color);
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.nav-list .list-item:hover .link {
+  color: var(--gold-color);
+}
+
+body.menu-open {
+  overflow: hidden;
+  /* Prevent scrolling when the menu is open */
+}
+
+@media (min-width: 768px) {
+  .nav-list {
+    display: flex;
+    flex-direction: row;
+    position: static;
+    height: auto;
+    transform: none;
+    opacity: 1;
+    pointer-events: all;
+    padding: 0;
+  }
+
+  .menu-toggle {
+    display: none;
+    /* Hide toggle button on larger screens */
+  }
+
+  .nav-list .list-item {
+    margin-right: 10px;
+    margin-bottom: 0;
+    /* padding: 0; */
+    border: 1px solid var(--nav-background-color);
+    border-radius: 10px;
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
+  }
+
+  .nav-list .list-item:hover {
+    border-color: var(--dark-gold);
+  }
+}
+
+/* BADGE */
+.badge-container {
+  position: relative;
+  display: inline-block;
+}
+
+.badge {
+  position: relative;
+  padding-left: 20px;
+  padding-right: 14px;
+  color: var(--white-color);
+  display: inline-block;
+  overflow: hidden;
+}
+
+.badge--primary {
+  background: linear-gradient(90deg, var(--talent-primary-color) 0%, var(--talent-gradient-color) 70%);
+}
+
+.badge--secondary {
+  background: linear-gradient(90deg, var(--talent-secondary-color) 0%, var(--talent-gradient-color) 70%);
+}
+
+.badge--thirdary {
+  background: linear-gradient(90deg, var(--talent-thirdary-color) 0%, var(--talent-gradient-color) 70%);
+}
+
+.badge-container .talent-icon-container {
+  /* background-color: var(--talent-icon-conatiner-background); */
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: -5px;
+}
+
+/* .badge-container .talent--primary {
+  border: 2.3px solid var(--talent-primary-color);
+}
+
+.badge-container .talent--secondary {
+  border: 2.3px solid var(--talent-secondary-color);
+}
+
+.badge-container .talent--thirdary {
+  border: 2.3px solid var(--talent-thirdary-color);
+} */
+
+.badge-container .talent-icon {
+  width: 100%;
+  /* margin-left: 1px; */
+}
+
+.badge .talent-name {
+  font-size: 1.2rem;
+}
+
+.badge .circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--nav-background-color);
+  /* background-color: var(--nav-background-color); */
+  position: absolute;
+  right: -4px;
+  z-index: 1;
+}
+
+.badge .circle-up {
+  top: -7px;
+}
+
+.badge .circle-down {
+  bottom: -7px;
+}
+
+@media screen and (min-width: 768px) {
+  .badge {
+    padding-left: 25px;
+  }
+
+  .badge .talent-name {
+    font-size: 1.7rem;
+  }
+
+  .badge-container .talent-icon-container {
+    /* background-color: var(--talent-icon-conatiner-background); */
+    width: 29px;
+    height: 29px;
+    left: -7px;
+  }
+}
+
+/* HERO PAGE */
+.hero-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding-top: 90px;
+}
+
+@media screen and (min-width: 768px) {
+  .hero-page {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-top: 120px
+  }
+}
+
+/* HERO CARD */
+.hero-card {
+  background-color: var(--nav-background-color);
+  border-radius: 20px;
+  box-shadow: 1px 10px 10px lightgrey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  max-width: 93.75vw;
+  cursor: pointer;
+}
+
+.hero-page .hero-image-container {
+  width: 250px;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-page .hero-image {
+  width: 200px;
+  width: 100%;
+  height: 350px;
+  transition: transform 0.2s ease-in;
+}
+
+.hero-page .hero-card:hover .hero-image {
+  transform: scale(1.2);
+}
+
+.hero-page .hero-name {
+  background-color: var(--white-color);
+  padding: 5px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+}
+
+.hero-page .hero-name h3 {
+  font-size: 2rem;
+}
+
+.hero-page .legendary:hover {
+  background-color: var(--dark-gold);
+
+  .hero-name h3 {
+    color: var(--dark-gold);
+  }
+}
+
+.hero-page .epic:hover {
+  background-color: var(--purple-color);
+
+  .hero-name h3 {
+    color: var(--purple-color);
+  }
+}
+
+.hero-page .elite:hover {
+  background-color: var(--blue-color);
+
+  .hero-name h3 {
+    color: var(--blue-color);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .hero-page .hero-card {
+    width: 350px;
+  }
+}
+
+/* HERO DETAIL */
+.hero-detail-page .hero-background {
+  background-image: url("./assets/background.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  position: relative;
+}
+
+@media screen and (min-width: 1024px) {}
+
+.hero-detail-page .hero-backgroundrop-gradient {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 93%);
+  position: absolute;
+  inset: 0px;
+  z-index: 1;
+}
+
+.hero-detail-page .hero-image-container {
+  width: 500px;
+}
+
+.hero-detail-page .hero-image {
+  width: 100%;
+  height: initial;
+}
+
+.hero-detail-page .hero-intro-info {
+  background-color: var(--nav-background-color);
+  color: var(--white-color);
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hero-detail-page .hero-title {
+  color: var(--gold-color);
+  font-size: 2.2rem;
+  font-style: italic;
+  font-weight: bold;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.hero-detail-page .hero-name {
+  font-size: 4rem;
+  font-style: italic;
+  text-transform: uppercase;
+  font-weight: bold;
+  display: flex;
+  gap: 10px;
+}
+
+/* WING ICON */
+.wing-icon-container {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+}
+
+.wing-icon {
+  width: 100%;
+}
+
+.flying-legion-container {
+  background-color: var(--nav-background-color);
+  border: 1px solid var(--dark-gold);
+  font-weight: normal;
+  font-size: 1.2rem;
+  position: absolute;
+  top: -100px;
+  right: -5vw;
+  width: 85vw;
+  max-width: 300px;
+  z-index: 2;
+  padding: 10px;
+  text-transform: none;
+  line-height: 1.2;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  pointer-events: none;
+}
+
+.wing-icon-container:hover .flying-legion-container {
+  opacity: 1;
+}
+
+
+@media screen and (min-width: 375px) {
+  .flying-legion-container {
+    top: -85px;
+    right: -70px;
+  }
+}
+
+.hero-detail-page .hero-description {
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
+
+@media screen and (min-width: 768px) {
+  .hero-detail-page .hero-name {
+    font-size: 7rem;
+    gap: 20px;
+  }
+
+  .wing-icon-container {
+    align-self: flex-start;
+  }
+
+  .hero-detail-page .hero-description {
+    font-size: 1.6rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .hero-detail-page .hero-intro {
+    position: relative;
+  }
+
+  .hero-detail-page {
+    min-height: unset;
+  }
+
+  .hero-detail-page .hero-background {
+    min-height: unset;
+    justify-content: end;
+  }
+
+  .hero-detail-page .hero-intro-info {
+    position: absolute;
+    top: 150px;
+    background-color: unset;
+    width: 50%;
+    z-index: 2;
+    padding-left: 40px;
+  }
+
+  .hero-detail-page .circle {
+    background-color: #350440;
+    background-size: cover;
+  }
+
+  .hero-detail-page .hero-backgroundrop-gradient {
+    background: linear-gradient(270deg, rgba(0, 0, 0, 0) 24.44%, #00000099 56.63%);
+  }
+
+  .hero-detail-page .hero-image-container {
+    width: 48.82vw;
+    max-width: 650px;
+  }
+}
+
+/* RACE */
+.race-icon-container {
+  position: relative;
+}
+
+.race-description-container {
+  background-color: var(--nav-background-color);
+  opacity: 0;
+  border: 1px solid var(--dark-gold);
+  padding: 10px;
+  position: absolute;
+  width: 85vw;
+  max-width: 300px;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: normal;
+  top: -165px;
+  left: 0;
+  z-index: 2;
+  text-transform: none;
+  transition: opacity 0.5s ease-in-out;
+  line-height: 1.3;
+  pointer-events: none;
+  font-style: normal;
+}
+
+.race-icon-container:hover .race-description--springwardens {
+  opacity: 1;
+  pointer-events: unset;
+}
+
+.race-name,
+.race-effect-title {
+  font-weight: bold;
+}
+
+.race-description {
+  margin-bottom: 10px;
+}
+
+.race-effect {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (min-width: 375px) {
+  .race-description-container {
+    top: -145px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .race-description-container {
+    top: -145px;
+    width: 300px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .race-description-container {
+    font-size: 1.4rem;
+    width: 400px;
+    max-width: unset;
+  }
+}
+
+/* BUFF EFFECT */
+.buff-effect-positive {
+  color: #149d14;
+}
+
+/* HERO SKILL */
+.hero-skill {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  position: relative;
+  height: var(--hero-skill-height);
+  /* align-items: center; */
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 50px;
+  gap: 10px;
+}
+
+.hero-skill-list {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.hero-skill-group {
+  filter: brightness(50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60px;
+  transition: all 0.5s ease-in;
+}
+
+.hero-skill-group:hover{
+  filter: unset;
+  color: black;
+}
+
+.hero-skill-name {
+  text-align: center;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.hero-skill-group.hero-skill-selected {
+  filter: unset;
+  color: black;
+}
+
+.hero-skill-image-container {
+  width: 40px;
+  height: 40px;
+}
+
+.hero-skill-image {
+  width: 100%;
+}
+
+.hero-skill-description-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 400px;
+}
+
+.hero-skill-description-container .hero-skill-name {
+  font-size: 2.1rem;
+  font-style: italic;
+}
+
+.hero-skill-description,
+.hero-skill-effect-container {
+  padding: 0 10px;
+  line-height: 1.3;
+}
+
+.hero-skill-effect-container{
+  display: flex;
+  flex-direction: column;
+  width: 265px;
+  gap: 5px;
+}
+
+.hero-skill-effect{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.hero-skill-background-logo{
+  background-color: #e8e2e2c7;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: var(--hero-skill-height);
+  position: absolute;
+  z-index: -1;
+  padding: 20px 0;
+}
+
+.hero-skill-background-logo img{
+  width: 100%;
+  max-width: 350px;
+}
+
+.herro-skill-effect-name{
+  font-weight: bold;
+}
+
+.hero-race-logo{
+  position: absolute;
+  width: 80px;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+}
+
+.hero-race-logo img{
+  width: 100%;
+  transition: width 0.5s ease-in-out;
+}
+
+@media screen and (min-width: 375px){
+  .hero-skill{
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 768px){
+  .hero-skill-background-logo, .hero-skill{
+    height: 450px;
+  }
+
+  .hero-skill{
+    flex-direction: row;
+    gap: 50px;
+  }
+
+  .hero-skill-list{
+    flex-direction: column;
+  }
+
+  .hero-skill-group{
+    width: 150px;
+    gap: 5px;
+    margin-bottom: 15px;
+  }
+
+  .hero-skill-description-container{
+    max-width: 500px;
+  }
+
+  .hero-skill-description-container .hero-skill-name{
+    font-size: 2.5rem;
+  }
+
+  .hero-skill-description{
+    margin-bottom: 15px;
+  }
+
+  .hero-skill-description, .hero-skill-effect-container{
+    font-size: 1.5rem;
+    width: unset;
+  }
+
+  .hero-skill-effect{
+    gap: 10px;
+  }
+
+  .hero-race-logo{
+    width: 150px;
+  }
+}
+
+@media screen and (min-width: 1024px){
+  .hero-skill{
+    gap: 80px;
+  }
+
+  .hero-skill-list{
+    margin-left: 40px;
+  }
+
+  .hero-skill-description-container{
+    min-width: none;
+    width: 700px;
+  }
+}
+
+/* footer */
+.footer{
+  background-color: #111;
+  color: white;
+  padding: 30px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

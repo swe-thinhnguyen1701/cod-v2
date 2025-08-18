@@ -1,0 +1,8 @@
+/node_modules
+/logs
+/server/database
+/server/node_modules
+
+package-lock.json
+
+.env

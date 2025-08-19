@@ -4,9 +4,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {ChakraProvider, ColorModeScript} from "@chakra-ui/react";
 import theme from "./theme.ts";
 import App from "./App.tsx";
+import "./index.css";
 
 import HomePage from "./pages/HomePage.tsx";
 import ErrorPage from "./pages/ErrorPage.tsx";
+import HeroPage from "./pages/HeroPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +20,10 @@ const router = createBrowserRouter([
         index: true,
         element: <HomePage />,
       },
+      {
+        path: "/heroes",
+        element: <HeroPage />
+      }
     ],
   },
 ]);

@@ -1,0 +1,50 @@
+:root {
+    --transition-timing: 0.3s;
+    --transition-function: ease-in-out;
+}
+
+.item-card .item-image {
+    transform: scale(1.3);
+    transition-property: transform;
+}
+
+.item-card .item-card-footer {
+    transition-property: background-color;
+}
+
+.item-card-body__legend,
+.item-card-body__epic,
+.item-card-body__common {
+    transition-property: background-color;
+}
+
+.item-card:hover {
+    .item-image {
+        transform: scale(1);
+    }
+
+    .item-card-footer {
+        background-color: #2D3748;
+    }
+
+    .item-card-body__legend {
+        background: radial-gradient(circle, rgba(255, 229, 92, 1) 35%, rgba(245, 206, 0, 1) 61%);
+    }
+
+    .item-card-body__epic {
+        background: radial-gradient(circle, rgba(255, 92, 255, 1) 35%, rgba(209, 0, 209, 1) 61%);
+    }
+
+    .item-card-body__common {
+        background: radial-gradient(circle, rgba(98, 184, 252, 1) 35%, rgba(4, 129, 228, 1) 61%);
+    }
+}
+
+.item-card .item-card-footer,
+.item-card .item-image,
+.item-card-body__legend,
+.item-card-body__epic,
+.item-card-body__common {
+    transition-duration: var(--transition-timing);
+    transition-timing-function: var(--transition-function);
+}

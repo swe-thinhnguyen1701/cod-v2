@@ -3,7 +3,7 @@ const {Hero} = require('../models');
 const resolvers = {
     Query: {
         getAllHeroes: async () => {
-            const heroes = await Hero.find().populate("roles");
+            const heroes = await Hero.find().populate("roles").sort({name: 1});
             if (!heroes || heroes.length === 0) {
                 throw new Error('No heroes found');
             }

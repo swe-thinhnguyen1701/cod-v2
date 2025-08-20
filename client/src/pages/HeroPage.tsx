@@ -1,8 +1,9 @@
 import { useQuery } from "@apollo/client";
 import { GET_ALL_HEROES } from "../graphql/queries";
-import { Spinner, Heading, UnorderedList, ListItem, VStack, Text } from "@chakra-ui/react";
+import { Heading, UnorderedList, ListItem, VStack, Text } from "@chakra-ui/react";
 import type HeroBriefEntity from "../entities/HeroEntity";
 import ItemCard from "../components/ItemCard";
+import Spinner from "../components/Spinner";
 
 const HeroPage = () => {
     const { data, error, loading } = useQuery(GET_ALL_HEROES);

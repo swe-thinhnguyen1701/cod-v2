@@ -10,7 +10,7 @@ export default interface HeroEntity {
     rarity: number,
     title: string,
     roles: [RoleEntity],
-    faction: [FactionEntity]
+    faction: FactionEntity
 }
 
 export default interface HeroBriefEntity {

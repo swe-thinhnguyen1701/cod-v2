@@ -12,10 +12,10 @@ const theme = extendTheme({
     Heading: {
       sizes: {
         "h1": {
-          fontSize: {base: "2.441rem", lg: "3.052rem", xl: "3.815rem"}
+          fontSize: {base: "2.941rem", lg: "3.352rem", xl: "3.815rem"}
         },
         "h2": {
-          fontSize: {base: "1.953rem", lg: "2.441rem", xl: "3.052rem"}
+          fontSize: {base: "1.653rem", lg: "2.041rem", xl: "2.152rem"}
         },
         "h3": {
           fontSize: {base: "1rem", lg: "1.3rem"}

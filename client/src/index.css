@@ -3,6 +3,16 @@
     --transition-function: ease-in-out;
 }
 
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+html {
+    line-height: 1.5;
+}
+
 *:focus {
     outline: none;
 }
@@ -61,7 +71,7 @@
     transition-property: border-color;
 }
 
-.menu-btn__dark:hover{
+.menu-btn__dark:hover {
     border-color: white;
 }
 

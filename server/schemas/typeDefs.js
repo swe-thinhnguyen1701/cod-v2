@@ -37,7 +37,7 @@ const typeDefs = `
     }
 
     type Query {
-        getHero(heroId: ID!): HeroDetails
+        getHeroDetailByName(heroName: String!): HeroDetails
         getAllHeroes: [HeroBrief]
     }
 `

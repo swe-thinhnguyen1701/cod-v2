@@ -14,9 +14,9 @@ export const GET_ALL_HEROES = gql`
     }
 `
 
-export const GET_HERO = gql`
-    query getHero($heroId: String!) {
-        getHero(heroId: $heroId) {
+export const GET_HERO_DETAIL_BY_NAME = gql`
+    query getHeroDetailByName($heroName: String!) {
+        getHeroDetailByName(heroName: $heroName) {
             description
             faction {
                 name

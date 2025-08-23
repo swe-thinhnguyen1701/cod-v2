@@ -9,8 +9,8 @@ const resolvers = {
             }
             return heroes;
         },
-        getHero: async (_parent, {heroId}) => {
-            const hero = await Hero.findById(heroId).populate(["skills", "faction", "roles"]);
+        getHeroDetailByName: async (_parent, {heroName}) => {
+            const hero = await Hero.findOne({name: heroName}).populate(["roles", "skills", "faction"]);
             if (!hero) {
                 throw new Error('Hero not found');
             }

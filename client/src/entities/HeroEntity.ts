@@ -1,13 +1,16 @@
+import type FactionEntity from "./FactionEntity";
 import type RoleEntity from "./RoleEntity";
+import type SkillEntity from "./SkillEntity";
 
 export default interface HeroEntity {
     id: string,
     name: string,
     description: string,
-    skills: [string],
+    skills: [SkillEntity],
     rarity: number,
     title: string,
-    roles: [RoleEntity]
+    roles: [RoleEntity],
+    faction: [FactionEntity]
 }
 
 export default interface HeroBriefEntity {

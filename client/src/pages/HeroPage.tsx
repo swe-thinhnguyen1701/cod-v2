@@ -4,6 +4,7 @@ import { Heading, UnorderedList, ListItem, VStack, Text } from "@chakra-ui/react
 import type HeroBriefEntity from "../entities/HeroEntity";
 import ItemCard from "../components/ItemCard";
 import Spinner from "../components/Spinner";
+import { Link } from "react-router-dom";
 
 const HeroPage = () => {
     const { data, error, loading } = useQuery(GET_ALL_HEROES);
@@ -17,7 +18,6 @@ const HeroPage = () => {
     }
 
     const heroes: HeroBriefEntity[] = data.getAllHeroes;
-    console.log(heroes);
 
     return (
         <VStack>
@@ -27,8 +27,10 @@ const HeroPage = () => {
             </VStack>
             <UnorderedList display="flex" flexWrap="wrap" justifyContent="center" gap={8} listStyleType="none" padding={0} margin={0}>
                 {heroes.map(hero => (
-                    <ListItem key={hero.id}>
-                        <ItemCard data={hero} key={hero.id} />
+                    <ListItem key={hero.id} cursor="pointer">
+                        <Link to={`/heroes/${hero.name}`}>
+                            <ItemCard data={hero} key={hero.id} />
+                        </Link>
                     </ListItem>
                 ))}
             </UnorderedList>

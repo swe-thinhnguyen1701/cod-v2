@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import { ListItem, Text, UnorderedList } from "@chakra-ui/react"
 import MENU from "../config/nav-links"
+import ColorModeSwitch from "./ColorModeSwitch"
 
 const MenuLarge = () => {
     return (
@@ -12,6 +13,9 @@ const MenuLarge = () => {
                     </Link>
                 </ListItem>
             ))}
+            <ListItem pl={4} width="50px">
+                <ColorModeSwitch />
+            </ListItem>
         </UnorderedList>
     )
 }

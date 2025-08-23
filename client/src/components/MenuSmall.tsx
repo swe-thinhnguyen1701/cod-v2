@@ -13,11 +13,12 @@ import {
     Text,
     useDisclosure,
     useMediaQuery,
-    useColorMode
+    useColorMode,
 } from "@chakra-ui/react";
 import { FiMenu, FiX } from "react-icons/fi";
 import MENU from "../config/nav-links";
 import codLogo from "../assets/CoD-logo.png"
+import ColorModeSwitch from "./ColorModeSwitch";
 
 const MenuSmall = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -82,6 +83,9 @@ const MenuSmall = () => {
                                     </Link>
                                 </ListItem>
                             ))}
+                            <ListItem pl={4} mt={4} width="50px">
+                                <ColorModeSwitch />
+                            </ListItem>
                         </UnorderedList>
                     </DrawerBody>
                 </DrawerContent>

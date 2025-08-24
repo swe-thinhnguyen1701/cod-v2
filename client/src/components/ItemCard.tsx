@@ -19,7 +19,7 @@ const ItemCard = ({ data }: Props) => {
                 pb={2}
                 className={`item-card-body__${data.rarity === 1 ? "legend" : data.rarity === 2 ? "epic" : "common"}`}>
                 <Image className="item-image" src={`${HERO_IMG_URL}${data.name}.webp`} alt={`${data.name} image`} />
-                <RoleBadgeList roles={data.roles}/>
+                <RoleBadgeList roles={data.roles} gap={4} isShorten/>
             </CardBody>
             <CardFooter display={"flex"} justifyContent={"center"} bg="gray.900" color="white" fontWeight="bold" padding={0} className="item-card-footer">
                 <Heading as="h3" size="h3" transition={"font-size 0.3s ease-in-out"}>

@@ -14,7 +14,7 @@ const typeDefs = `
         description: String!
         image: String!
         name: String!
-        preview: [String]
+        previews: [String]
         rage_cost: Int
     }
 

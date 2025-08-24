@@ -11,7 +11,7 @@ const skillSchema = new Schema({
         required: true,
         trim: true
     },
-    preview: [
+    previews: [
         {
             type: String
         }

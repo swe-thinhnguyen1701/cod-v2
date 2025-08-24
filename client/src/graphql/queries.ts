@@ -34,7 +34,7 @@ export const GET_HERO_DETAIL_BY_NAME = gql`
                 description
                 image
                 name
-                preview
+                previews
                 rage_cost
             }
             title

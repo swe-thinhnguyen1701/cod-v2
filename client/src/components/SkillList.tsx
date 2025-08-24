@@ -1,0 +1,84 @@
+import { UnorderedList, ListItem, Box, Text, Image } from "@chakra-ui/react"
+import type SkillEntity from "../entities/SkillEntity"
+import useSkillStore from "../state-management/skillStore";
+import { useState } from "react";
+
+interface Props {
+    skills: [SkillEntity],
+    type: "hero" | "pet" | "artifact"
+    owner: string
+}
+
+const SKILL_IMG_URLS = [
+    "https://d3bhl6gkk81cq1.cloudfront.net/hero-skills/",
+    "https://d3bhl6gkk81cq1.cloudfront.net/pet-skills/",
+    "https://d3bhl6gkk81cq1.cloudfront.net/artifact-skills/"
+];
+
+const SkillList = ({ skills, type, owner }: Props) => {
+    const [selectedItem, setSelectedItem] = useState(0);
+    const { setSelectedSkill } = useSkillStore();
+
+    const handleClick = (e: React.MouseEvent<HTMLUListElement, MouseEvent>) => {
+        const target = e.target as HTMLElement;
+
+        const selectedSkillIdx = target.closest("li")?.id;
+        if (selectedSkillIdx === undefined)
+            return;
+        const idx = Number(selectedSkillIdx);
+        if (isNaN(idx) || !skills[idx]) {
+            return;
+        }
+        setSelectedSkill(skills[idx]);
+        setSelectedItem(idx);
+        console.log(skills[idx]);
+    }
+
+    const SKILL_IMG_URL = type === "hero"
+        ? SKILL_IMG_URLS[0]
+        : type === "pet"
+            ? SKILL_IMG_URLS[1]
+            : SKILL_IMG_URLS[2];
+
+    return (
+        <UnorderedList
+            display="flex"
+            flexDirection={{base: "row", lg:"column"}}
+            gap={4}
+            listStyleType="none"
+            margin={0}
+            maxWidth={{ base: "93.75vw", md: "none" }}
+            overflowX="auto"
+            overflowY="hidden"
+            onClick={(e) => handleClick(e)}
+            cursor="pointer"
+            height={{base: "125px", lg: "auto"}}
+        >
+            {skills.map((skill, idx) => (
+                <ListItem
+                    key={idx}
+                    id={`${idx}`}
+                    width="90px"
+                    display="flex"
+                    flex="0 0 auto"
+                    flexDirection="column"
+                    alignItems="center"
+                    justifyContent="start"
+                    opacity={idx === selectedItem ? 1 : 0.5}
+                    transform={idx === selectedItem ? "scale(1.2)" : "scale(1)"}
+                    className="list-item"
+                    pt={3}
+                >
+                    <Box width="50px">
+                        <Image src={`${SKILL_IMG_URL}${owner}-${idx + 1}.png`} alt={`${skill.name} skill image`} />
+                    </Box>
+                    <Text textTransform="uppercase" fontSize="0.8rem" fontWeight="bold" textAlign="center">
+                        {skill.name}
+                    </Text>
+                </ListItem>
+            ))}
+        </UnorderedList>
+    )
+}
+
+export default SkillList;

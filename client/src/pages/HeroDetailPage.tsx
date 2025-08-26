@@ -6,6 +6,7 @@ import { Heading, VStack } from "@chakra-ui/react";
 import useHeroStore from "../state-management/heroStore";
 import Spinner from "../components/Spinner";
 import HeroInfo from "../components/HeroInfo";
+import HeroSkill from "../components/HeroSkill";
 
 
 const HeroDetailPage = () => {
@@ -16,7 +17,7 @@ const HeroDetailPage = () => {
     const { setHero } = useHeroStore();
 
     useEffect(() => {
-        if(data?.getHeroDetailByName)
+        if (data?.getHeroDetailByName)
             setHero(data.getHeroDetailByName);
     }, [data, setHero]);
 
@@ -29,6 +30,7 @@ const HeroDetailPage = () => {
     return (
         <VStack>
             <HeroInfo />
+            <HeroSkill />
         </VStack>
     )
 }

@@ -88,13 +88,23 @@ html {
     color: #c3ab76;
 }
 
+/* List Item */
+.list-item {
+    transition-property: opacity transofrm;
+}
+
+.list-item:hover {
+    transform: scale(1.2);
+}
+
 .item-card .item-card-footer,
 .item-card .item-image,
 .item-card-body__legend,
 .item-card-body__epic,
 .item-card-body__common,
 .menu-btn,
-.menu-item {
+.menu-item,
+.list-item {
     transition-duration: var(--transition-timing);
     transition-timing-function: var(--transition-function);
 }

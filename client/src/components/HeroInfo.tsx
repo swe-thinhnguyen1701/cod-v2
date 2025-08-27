@@ -15,7 +15,7 @@ const HeroInfo = () => {
     const { hero } = useHeroStore();
 
     if (!hero)
-        return <Heading>404! Hero does not exist</Heading>;
+        return <Heading>Something went wrong</Heading>;
 
     return (
         <Box
@@ -31,7 +31,7 @@ const HeroInfo = () => {
                         src={heroBackground}
                         alt="Hero background image"
                         width="100%"
-                        height={{ base: "100vh", md: "500px", lg: "620px" }}
+                        height={{ base: "100vh", md: "600px", lg: "620px" }}
                     />
                 </Box>
                 <Box

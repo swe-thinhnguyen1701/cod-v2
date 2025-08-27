@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_HERO_DETAIL_BY_NAME } from "../graphql/queries";
 import { useEffect } from "react";
-import { Heading, VStack } from "@chakra-ui/react";
+import { Card, Flex, Heading, useColorMode, VStack } from "@chakra-ui/react";
 import useHeroStore from "../state-management/heroStore";
 import Spinner from "../components/Spinner";
 import HeroInfo from "../components/HeroInfo";
@@ -10,6 +10,7 @@ import HeroSkill from "../components/HeroSkill";
 
 
 const HeroDetailPage = () => {
+    const {colorMode} = useColorMode();
     const { heroName: heroName } = useParams();
     const { loading, error, data } = useQuery(GET_HERO_DETAIL_BY_NAME, {
         variables: { heroName: heroName }
@@ -28,9 +29,14 @@ const HeroDetailPage = () => {
         return <Heading>{`Something went wrong ${error.message}`}</Heading>
 
     return (
-        <VStack>
+        <VStack gap="100px">
             <HeroInfo />
-            <HeroSkill />
+            <Card rounded="md" padding="10px 0" backgroundColor={colorMode === "light" ? "blackAlpha.50" : "gray.700"}>
+                <HeroSkill />
+            </Card>
+            <Flex>
+                
+            </Flex>
         </VStack>
     )
 }

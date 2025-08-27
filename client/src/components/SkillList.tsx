@@ -31,7 +31,6 @@ const SkillList = ({ skills, type, owner }: Props) => {
         }
         setSelectedSkill(skills[idx]);
         setSelectedItem(idx);
-        console.log(skills[idx]);
     }
 
     const SKILL_IMG_URL = type === "hero"
@@ -43,22 +42,23 @@ const SkillList = ({ skills, type, owner }: Props) => {
     return (
         <UnorderedList
             display="flex"
-            flexDirection={{base: "row", lg:"column"}}
-            gap={4}
+            flexDirection={{ base: "row", lg: "column" }}
+            gap={{ base: 4, md: 8, lg: 4 }}
             listStyleType="none"
             margin={0}
-            maxWidth={{ base: "93.75vw", md: "none" }}
-            overflowX="auto"
-            overflowY="hidden"
+            maxWidth={{ base: "93vw", md: "none" }}
+            overflowX={{ base: "scroll", md: "unset" }}
+            overflowY={{base: "hidden", md: "unset"}}
             onClick={(e) => handleClick(e)}
             cursor="pointer"
-            height={{base: "125px", lg: "auto"}}
+            height={{ base: "100px" }}
+            pt={4}
         >
             {skills.map((skill, idx) => (
                 <ListItem
                     key={idx}
                     id={`${idx}`}
-                    width="90px"
+                    width={{ base: "60px", md: "80px", lg: "120px" }}
                     display="flex"
                     flex="0 0 auto"
                     flexDirection="column"
@@ -67,12 +67,15 @@ const SkillList = ({ skills, type, owner }: Props) => {
                     opacity={idx === selectedItem ? 1 : 0.5}
                     transform={idx === selectedItem ? "scale(1.2)" : "scale(1)"}
                     className="list-item"
-                    pt={3}
                 >
-                    <Box width="50px">
+                    <Box width={{ base: "30px", md: "50px" }}>
                         <Image src={`${SKILL_IMG_URL}${owner}-${idx + 1}.png`} alt={`${skill.name} skill image`} />
                     </Box>
-                    <Text textTransform="uppercase" fontSize="0.8rem" fontWeight="bold" textAlign="center">
+                    <Text
+                        textTransform="uppercase"
+                        fontSize={{ base: "0.6rem", md: "0.8rem" }}
+                        fontWeight="bold"
+                        textAlign="center">
                         {skill.name}
                     </Text>
                 </ListItem>

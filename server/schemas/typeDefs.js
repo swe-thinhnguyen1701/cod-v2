@@ -10,22 +10,32 @@ const typeDefs = `
         buff: [String]!
     }
 
-    type Skill {
-        description: String!
-        image: String!
-        name: String!
+    type HeroSkill {
+        description: [String]
+        image: String
+        name: String
         previews: [String]
         rage_cost: Int
     }
 
+    type ArtifactSkill {
+        description: [String]
+        image: String
+        name: String
+        previews: [String]
+        rage_cost: Int
+        cooldown: String
+    }
+
     type HeroDetails {
+        artifacts: [String]
         description: String!
         faction: Faction
         id: ID!
         name: String!
         rarity: Int!
         roles: [Role]
-        skills: [Skill]
+        skills: [HeroSkill]
         title: String!
     }
 

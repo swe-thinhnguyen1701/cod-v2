@@ -1,4 +1,4 @@
-const {Schema, model} = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const skillSchema = new Schema({
     name: {
@@ -6,11 +6,12 @@ const skillSchema = new Schema({
         required: true,
         trim: true
     },
-    description: {
-        type: String,
-        required: true,
-        trim: true
-    },
+    description: [
+        {
+            type: String,
+            required: true
+        }
+    ],
     previews: [
         {
             type: String

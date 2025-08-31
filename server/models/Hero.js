@@ -62,7 +62,17 @@ const heroSchema = new Schema({
     roles: [{
         type: Schema.Types.ObjectId,
         ref: "Role"
-    }]
+    }],
+    artifacts: [
+        {
+            type: String
+        }
+    ],
+    pets: [
+        {
+            type: String
+        }
+    ],
 });
 
 const Hero = model("Hero", heroSchema);

@@ -97,6 +97,14 @@ html {
     transform: scale(1.2);
 }
 
+.recommended-item {
+    transition-property: transform;
+}
+
+.recommended-item:hover{
+    transform: translateY(-10px);
+}
+
 .item-card .item-card-footer,
 .item-card .item-image,
 .item-card-body__legend,
@@ -104,7 +112,8 @@ html {
 .item-card-body__common,
 .menu-btn,
 .menu-item,
-.list-item {
+.list-item,
+.recommended-item {
     transition-duration: var(--transition-timing);
     transition-timing-function: var(--transition-function);
 }

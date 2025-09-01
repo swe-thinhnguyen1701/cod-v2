@@ -34,7 +34,7 @@ const SkillInfo = () => {
                 }
                 <Box mt={2} mb={4}>
                     <Text fontWeight="bold">Description</Text>
-                    <TextEffect text={selectedSkill.description} />
+                    <TextEffect text={selectedSkill.description[0]} />
                 </Box>
                 <Box >
                     <UnorderedList listStyleType="none" margin={0}>

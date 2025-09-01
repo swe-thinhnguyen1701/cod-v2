@@ -19,8 +19,10 @@ const HeroSkill = () => {
     if (!hero)
         return null;
 
+    // console.log(hero);
+
     return (
-        <VStack alignItems="start" padding="10px 20px">
+        <VStack alignItems="start">
             <SectionHeading title="Skills" />
             <Flex flexDir={{ base: "column", lg: "row" }} gap={4}>
                 <SkillList skills={hero.skills} owner={hero.name} type={"hero"} />

@@ -46,7 +46,7 @@ const HeroInfo = () => {
                 justifyContent={{ md: "space-between" }}
                 gap={8}
             >
-                <VStack maxWidth="550px" alignItems="start" gap={5} alignSelf={{md: "center"}} pl={{ base: 0, lg: 8, xl: 10 }}>
+                <VStack maxWidth="550px" alignItems="start" gap={5} alignSelf={{ md: "center" }} pl={{ base: 0, lg: 8, xl: 10 }}>
                     <HStack gap={4} alignItems="center">
                         <Box>
                             <Tooltip label={<FactionDescription faction={hero.faction} />} closeOnClick={false}>
@@ -71,15 +71,16 @@ const HeroInfo = () => {
                                 >
                                     {hero.name}
                                 </Heading>
-                                <Tooltip
-                                    label="This is Flying Hero. Flying Heroes can form Flying Legions. A Flying Legion can only contain Flying units, Flying Heroes, and FLying Pets."
-                                    size="md"
-                                    closeOnClick={false}
-                                >
-                                    <Text as="span" pt={2}>
-                                        <GiLibertyWing />
-                                    </Text>
-                                </Tooltip>
+                                {hero.is_flying &&
+                                    <Tooltip
+                                        label="This is Flying Hero. Flying Heroes can form Flying Legions. A Flying Legion can only contain Flying units, Flying Heroes, and FLying Pets."
+                                        size="md"
+                                        closeOnClick={false}
+                                    >
+                                        <Text as="span" pt={2}>
+                                            <GiLibertyWing />
+                                        </Text>
+                                    </Tooltip>}
                             </HStack>
                         </VStack>
                     </HStack>

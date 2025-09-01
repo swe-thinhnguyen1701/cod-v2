@@ -10,7 +10,11 @@ export default interface HeroEntity {
     rarity: number,
     title: string,
     roles: [RoleEntity],
-    faction: FactionEntity
+    faction: FactionEntity,
+    artifacts: [string],
+    pets: [string],
+    partners: [string]
+    is_flying: boolean
 }
 
 export default interface HeroBriefEntity {

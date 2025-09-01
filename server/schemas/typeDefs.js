@@ -37,6 +37,9 @@ const typeDefs = `
         roles: [Role]
         skills: [HeroSkill]
         title: String!
+        pets: [String]
+        partners: [String]
+        is_flying: Boolean
     }
 
     type HeroBrief {

@@ -73,6 +73,14 @@ const heroSchema = new Schema({
             type: String
         }
     ],
+    partners: [
+        {
+            type: String
+        }
+    ],
+    is_flying: {
+        type: Boolean,
+    }
 });
 
 const Hero = model("Hero", heroSchema);

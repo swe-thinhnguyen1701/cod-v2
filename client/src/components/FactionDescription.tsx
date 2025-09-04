@@ -23,11 +23,11 @@ const FactionDescription = ({ faction, showDescription }: Props) => {
                 {faction.name}
             </Text>
             {showDescription && <TextEffect text={faction.description} />}
-            <VStack alignItems="start">
+            {/* <VStack alignItems="start">
                 {faction.buff.map((buff, idx) => (
                     <TextEffect key={idx} text={buff} />
                 ))}
-            </VStack>
+            </VStack> */}
         </VStack>
     )
 }

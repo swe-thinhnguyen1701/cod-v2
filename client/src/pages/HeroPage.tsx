@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { GET_ALL_HEROES } from "../graphql/queries";
-import { Heading, UnorderedList, ListItem, VStack, Text } from "@chakra-ui/react";
+import { Heading, UnorderedList, ListItem, Text, VStack } from "@chakra-ui/react";
 import type HeroBriefEntity from "../entities/HeroEntity";
 import ItemCard from "../components/ItemCard";
 import Spinner from "../components/Spinner";
@@ -9,8 +9,13 @@ import { Link } from "react-router-dom";
 const HeroPage = () => {
     const { data, error, loading } = useQuery(GET_ALL_HEROES);
 
-    if (loading)
-        return <Spinner />
+    if (loading){
+        return (
+         <VStack minHeight="90vh" justifyContent="center">
+            <Spinner />
+         </VStack>   
+        )
+    }
 
     if (error) {
         console.log(error);

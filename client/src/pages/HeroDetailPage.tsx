@@ -28,7 +28,7 @@ const HeroDetailPage = () => {
         return <Spinner />
 
     if (error)
-        return <Heading>{`Something went wrong ${error.message}`}</Heading>
+        return <Heading>{`${error.message}`}</Heading>
 
     return (
         <VStack gap="100px">

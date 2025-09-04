@@ -19,7 +19,7 @@ function App() {
     <ApolloProvider client={client}>
       <VStack>
         <NavBar />
-        <Box minHeight="100vh">
+        <Box minHeight="100vh" pt="120px">
           <Outlet />
         </Box>
         <Footer />

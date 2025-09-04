@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
 :root {
     --transition-timing: 0.3s;
     --transition-function: ease-in-out;
@@ -101,8 +103,37 @@ html {
     transition-property: transform;
 }
 
-.recommended-item:hover{
+.recommended-item:hover {
     transform: translateY(-10px);
+}
+
+/* COD title */
+.cod-title {
+    font-family: "Audiowide", sans-serif;
+}
+
+/* nav bar */
+.nav-bar {
+    backdrop-filter: blur(5px);
+    /* background-color: rgba(68, 76, 77, 0.471); */
+}
+
+.home-link .home-link-title {
+    border-bottom: 1px solid transparent;
+    transition-property: border-color;
+}
+
+.home-link:hover {
+    .home-link-image {
+        animation: spin 0.8s linear;
+    }
+}
+
+
+@keyframes spin {
+    100% {
+        transform: rotateY(360deg)
+    }
 }
 
 .item-card .item-card-footer,
@@ -113,7 +144,8 @@ html {
 .menu-btn,
 .menu-item,
 .list-item,
-.recommended-item {
+.recommended-item,
+.home-link .home-link-title {
     transition-duration: var(--transition-timing);
     transition-timing-function: var(--transition-function);
 }

@@ -5,11 +5,23 @@ import ColorModeSwitch from "./ColorModeSwitch"
 
 const MenuLarge = () => {
     return (
-        <UnorderedList display="flex" gap={4} listStyleType="none" margin={0} padding={0}>
+        <UnorderedList display="flex" alignItems="center" gap={4} listStyleType="none" margin={0} padding={0}>
             {MENU.map((item, idx) => (
-                <ListItem key={idx}>
+                <ListItem
+                    key={idx}
+                    className="menu-item"
+                    fontWeight="bold"
+                    fontSize="18px"
+                    rounded={4}
+                >
                     <Link to={item.path}>
-                        <Text fontWeight="bold" textTransform="uppercase">{item.name}</Text>
+                        <Text
+                            fontWeight="bold"
+                            textTransform="uppercase"
+                            padding={4}
+                        >
+                            {item.name}
+                        </Text>
                     </Link>
                 </ListItem>
             ))}

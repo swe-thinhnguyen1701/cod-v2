@@ -29,15 +29,15 @@ const artifactSchema = new Schema({
         type: Boolean,
         required: true
     },
-    roles: {
-        type: [String],
-        required: true
-    },
+    roles: [{
+        type: Schema.Types.ObjectId,
+        ref: "Role"
+    }],
     stats: {
         base: [statSchema],
         exemplar: [statSchema]
     },
-    skill: [{
+    skills: [{
         type: Schema.Types.ObjectId,
         ref: "Skill"
     }],

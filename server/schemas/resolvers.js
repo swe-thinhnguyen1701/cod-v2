@@ -1,4 +1,5 @@
-const {Hero} = require('../models');
+const { get } = require('mongoose');
+const {Hero, Artifact} = require('../models');
 
 const resolvers = {
     Query: {
@@ -15,6 +16,20 @@ const resolvers = {
                 throw new Error('Hero not found');
             }
             return hero;
+        },
+        getAllArtifacts: async () => {
+            const artifacts = await Artifact.find().populate("roles").sort({name: 1});
+            if (!artifacts || artifacts.length === 0) {
+                throw new Error('No artifacts found');
+            }
+            return artifacts;
+        },
+        getArtifactDetailByName: async (_parent, {artifactName}) => {
+            const artifact = await Artifact.findOne({name: artifactName}).populate(["roles", "skills"]);
+            if (!artifact) {
+                throw new Error('Artifact not found');
+            }
+            return artifact;
         }
     }
 }

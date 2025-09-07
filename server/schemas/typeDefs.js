@@ -19,11 +19,12 @@ const typeDefs = `
     }
 
     type ArtifactSkill {
-        description: [String]
-        image: String
         name: String
+        description: [String]
         previews: [String]
         rage_cost: Int
+        additional_effect: String
+        exemplar_effect: String
         cooldown: String
     }
 
@@ -49,9 +50,26 @@ const typeDefs = `
         rarity: Int
     }
 
+    type ArtifactDetais {
+        name: String
+        rarity: Int
+        is_exemplar: Boolean
+        roles: [Role]
+        skills: [ArtifactSkill]
+    }
+
+    type ArtifactBrief {
+        name: String!
+        rarity: Int!
+        roles: [Role]
+        is_exemplar: Boolean
+    }
+
     type Query {
         getHeroDetailByName(heroName: String!): HeroDetails
         getAllHeroes: [HeroBrief]
+        getArtifactDetailByName(artifactName: String!): ArtifactDetais
+        getAllArtifacts: [ArtifactBrief]
     }
 `
 

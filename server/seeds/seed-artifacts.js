@@ -9,9 +9,9 @@ const seedArtifacts = async () => {
             await Artifact.deleteMany({});
             for (let artifact of artifacts) {
                 const artifactSkill = await Skill.findOne({ owner: artifact.name });
-                artifact.skill = artifactSkill?._id;
+                artifact.skills = artifactSkill?._id;
 
-                const roles = [];
+                // const roles = [];
                 // for (let i = 0; i < artifact.roles.length; i++) {
                 //     const role = await Role.findOne({ name: artifact.roles[i] });
                 //     if (!role) {
@@ -20,6 +20,7 @@ const seedArtifacts = async () => {
                 //     }
                 //     roles.push(role._id);
                 // }
+                // artifact.roles = roles;
                 artifact.roles = await Promise.all(
                     artifact.roles.map(async (roleName) => {
                         const role = await Role.findOne({ name: roleName });

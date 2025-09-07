@@ -1,14 +1,15 @@
 import { Card, CardBody, CardFooter, Heading } from "@chakra-ui/react";
 import type HeroBriefEntity from "../entities/HeroEntity";
+import type ArtifactEntity from "../entities/ArtifactEntity";
 import RoleBadgeList from "./RoleBadgeList";
 // import { useState } from "react";
 import BlurImage from "./BlurImage";
 
 interface Props {
-    data: HeroBriefEntity
+    data: HeroBriefEntity | ArtifactEntity
 }
 
-const HERO_IMG_URL = "https://d3bhl6gkk81cq1.cloudfront.net/hero-full/"
+// const HERO_IMG_URL = "https://d3bhl6gkk81cq1.cloudfront.net/hero-full/"
 
 const ItemCard = ({ data }: Props) => {
     // const [loaded, setLoaded] = useState(false);
@@ -31,12 +32,12 @@ const ItemCard = ({ data }: Props) => {
                     filter={loaded ? "blur(0px)" : "blur(20px)"}
                     onLoad={() => setLoaded(true)}
                 /> */}
-                <BlurImage src={`${HERO_IMG_URL}${data.name}.webp`} alt={`${data.name} image`} />
+                <BlurImage src={data.image} alt={`${data.name} image`} />
                 <RoleBadgeList roles={data.roles} gap={4} isShorten />
             </CardBody>
-            <CardFooter display={"flex"} justifyContent={"center"} bg="gray.900" color="white" fontWeight="bold" padding={0} className="item-card-footer">
+            <CardFooter display={"flex"} justifyContent={"center"} bg="gray.900" color="white" fontWeight="bold" padding={1} className="item-card-footer">
                 <Heading as="h3" size="h3" transition={"font-size 0.3s ease-in-out"}>
-                    {data.name.toUpperCase()}
+                    {data.name.length > 10 ? data.name.substring(0, 10).toUpperCase() + "..." : data.name.toUpperCase()}
                 </Heading>
             </CardFooter>
         </Card>

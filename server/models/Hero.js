@@ -80,6 +80,11 @@ const heroSchema = new Schema({
     ],
     is_flying: {
         type: Boolean,
+    },
+    image: {
+        type: String,
+        required: true,
+        trim: true
     }
 });
 

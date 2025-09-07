@@ -41,6 +41,7 @@ const typeDefs = `
         pets: [String]
         partners: [String]
         is_flying: Boolean
+        image: String
     }
 
     type HeroBrief {
@@ -48,22 +49,24 @@ const typeDefs = `
         name: String!
         roles: [Role]
         rarity: Int
+        image: String
     }
 
     type ArtifactDetais {
-        name: String
-        rarity: Int
+        name: String!
+        rarity: Int!
         is_exemplar: Boolean
-        roles: [Role]
-        skills: [ArtifactSkill]
+        roles: [Role]!
+        skills: [ArtifactSkill]!
         image: String
     }
 
     type ArtifactBrief {
+        id: ID!
         name: String!
         rarity: Int!
-        roles: [Role]
-        is_exemplar: Boolean
+        roles: [Role]!
+        is_exemplar: Boolean!
     }
 
     type Query {

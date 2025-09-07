@@ -3,6 +3,7 @@ const db = require("../config/db-connection");
 const heroes = require("../database/heroes.json");
 
 const FACTION = ["Springwardens", "League of Order", "Wilderburg"];
+const HERO_IMG_URL = "https://d3bhl6gkk81cq1.cloudfront.net/hero-full/"
 
 const seedHeroes = async () => {
     db.once("open", async () => {
@@ -31,6 +32,7 @@ const seedHeroes = async () => {
                     roles.push(role._id);
                 }
                 hero.roles = roles;
+                hero.image = `${HERO_IMG_URL}${hero.image}`
                 await Hero.create(hero);
             }
         } catch (error) {

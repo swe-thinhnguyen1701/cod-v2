@@ -3,6 +3,8 @@ const db = require("../config/db-connection");
 const artifacts = require("../database/artifacts.json");
 const expandStats = require("../utils/expandStats.ts");
 
+const ARTIFACT_IMAGE_URL = "https://d3bhl6gkk81cq1.cloudfront.net/artifacts/"
+
 const seedArtifacts = async () => {
     db.once("open", async () => {
         try {
@@ -33,6 +35,7 @@ const seedArtifacts = async () => {
 
                 // Expands stats dynamically
                 artifact.stats = expandStats(artifact.stats, artifact.rarity);
+                artifact.image = `${ARTIFACT_IMAGE_URL}${artifact.name}.webp`;
 
                 // debug log
                 // if (artifact.name === "Springbird Feather") {

@@ -67,6 +67,7 @@ const typeDefs = `
         rarity: Int!
         roles: [Role]!
         is_exemplar: Boolean!
+        image: String
     }
 
     type Query {

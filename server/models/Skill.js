@@ -25,6 +25,18 @@ const skillSchema = new Schema({
         type: Number,
         required: false
     },
+    additional_effect: {
+        type: String,
+        required: false
+    },
+    exemplar_effect: {
+        type: String,
+        required: false
+    },
+    cooldown: {
+        type: String,
+        required: false
+    },
     owner: {
         type: String,
         required: false,

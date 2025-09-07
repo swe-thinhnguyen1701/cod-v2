@@ -1,4 +1,4 @@
-const {Schema, model} = require('mongoose');
+const {Schema, model} = require("mongoose");
 const factionSchema = new Schema({
     name: {
         type: String,
@@ -14,5 +14,5 @@ const factionSchema = new Schema({
     }
 });
 
-const Faction = model('Faction', factionSchema);
+const Faction = model("Faction", factionSchema);
 module.exports = Faction;

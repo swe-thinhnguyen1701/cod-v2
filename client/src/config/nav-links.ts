@@ -20,6 +20,10 @@ const MENU = [
     {
         name: "Heroes",
         path: "/heroes"
+    },
+    {
+        name: "Artifacts",
+        path: "/artifacts"
     }
 ];
 

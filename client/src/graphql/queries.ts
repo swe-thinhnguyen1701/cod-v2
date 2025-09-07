@@ -45,3 +45,28 @@ export const GET_HERO_DETAIL_BY_NAME = gql`
         }
     }
 `
+
+export const GET_ALL_ARTIFACTS = gql`
+    query getAllArtifacts {
+        getAllArtifacts {
+            name
+            rarity
+            roles
+            is_exemplar
+        }
+    }
+`
+
+export const GET_ARTIFACT_DETAIL_BY_NAME = gql`
+    query getArtifactDetailByName($artifactName: String!) {
+        getArtifactDetailByName(artifactName: $artifactName) {
+            name
+            rarity
+            roles
+            is_exemplar
+            previews
+            skills
+            image
+        }
+    }
+`

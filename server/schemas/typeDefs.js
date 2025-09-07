@@ -56,6 +56,7 @@ const typeDefs = `
         is_exemplar: Boolean
         roles: [Role]
         skills: [ArtifactSkill]
+        image: String
     }
 
     type ArtifactBrief {

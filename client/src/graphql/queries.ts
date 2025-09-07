@@ -10,6 +10,7 @@ export const GET_ALL_HEROES = gql`
                 description
             }
             rarity
+            image
         }
     }
 `
@@ -42,6 +43,7 @@ export const GET_HERO_DETAIL_BY_NAME = gql`
             pets
             partners
             is_flying
+            image
         }
     }
 `
@@ -49,10 +51,15 @@ export const GET_HERO_DETAIL_BY_NAME = gql`
 export const GET_ALL_ARTIFACTS = gql`
     query getAllArtifacts {
         getAllArtifacts {
+            id
             name
             rarity
-            roles
+            roles {
+                name
+                description
+            }
             is_exemplar
+            image
         }
     }
 `

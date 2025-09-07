@@ -15,6 +15,7 @@ export default interface HeroEntity {
     pets: [string],
     partners: [string]
     is_flying: boolean
+    image: string
 }
 
 export default interface HeroBriefEntity {
@@ -22,4 +23,5 @@ export default interface HeroBriefEntity {
     name: string,
     roles: [RoleEntity],
     rarity: number
+    image: string
 }

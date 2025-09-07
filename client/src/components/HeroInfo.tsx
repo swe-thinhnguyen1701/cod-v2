@@ -9,8 +9,6 @@ import springwardensFaction from "../assets/faction-images/Springwardens.png";
 import wilderburgFaction from "../assets/faction-images/Wilderburg.png";
 import ItemRarity from "./ItemRarity";
 
-const HERO_IMG_URL = "https://d3bhl6gkk81cq1.cloudfront.net/hero-full/";
-
 const HeroInfo = () => {
     const { hero } = useHeroStore();
 
@@ -98,7 +96,7 @@ const HeroInfo = () => {
                     maxWidth="600px"
                     transition={"width 0.3s ease-in-out"}
                 >
-                    <Image src={`${HERO_IMG_URL}${hero.name}.webp`} alt={`${hero.name} image`} />
+                    <Image src={hero.image} alt={`${hero.name} image`} />
                 </Box>
             </Flex>
         </Box>

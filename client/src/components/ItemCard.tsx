@@ -22,7 +22,7 @@ const ItemCard = ({ data }: Props) => {
                 justifyContent="space-between"
                 alignItems="center"
                 pb={2}
-                className={`item-card-body__${data.rarity === 1 ? "legend" : data.rarity === 2 ? "epic" : "common"}`}>
+                className={data.rarity === 1 ? "item-card-body__legend" : data.rarity === 2 ? "item-card-body__epic" : "item-card-body__common"}>
                 {/* <Image
                     alt={`${data.name} image`}
                     className="item-image"

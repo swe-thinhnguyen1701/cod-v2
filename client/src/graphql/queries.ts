@@ -69,10 +69,25 @@ export const GET_ARTIFACT_DETAIL_BY_NAME = gql`
         getArtifactDetailByName(artifactName: $artifactName) {
             name
             rarity
-            roles
+            roles{
+                name
+                description
+            }
             is_exemplar
-            previews
-            skills
+            skills{
+                description
+                name
+                previews
+                rage_cost
+                additional_effect
+                exemplar_effect
+                cooldown
+            }
+            stats {
+                name
+                values
+                image
+            }
             image
         }
     }

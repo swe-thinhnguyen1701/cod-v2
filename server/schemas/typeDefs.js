@@ -28,6 +28,12 @@ const typeDefs = `
         cooldown: String
     }
 
+    type ArtifactStat{
+        name: String
+        values: [Float]
+        image: String
+   }
+
     type HeroDetails {
         artifacts: [String]
         description: String!
@@ -58,6 +64,7 @@ const typeDefs = `
         is_exemplar: Boolean
         roles: [Role]!
         skills: [ArtifactSkill]!
+        stats: [ArtifactStat]!
         image: String
     }
 

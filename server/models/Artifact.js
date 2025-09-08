@@ -33,10 +33,10 @@ const artifactSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Role"
     }],
-    stats: {
-        base: [statSchema],
-        exemplar: [statSchema]
-    },
+    stats: [{
+        type: statSchema,
+        required: true
+    }],
     skills: [{
         type: Schema.Types.ObjectId,
         ref: "Skill"

@@ -38,7 +38,7 @@ const seedArtifacts = async () => {
                 artifact.image = `${ARTIFACT_IMAGE_URL}${artifact.name}.webp`;
 
                 // debug log
-                // if (artifact.name === "Springbird Feather") {
+                // if (artifact.name === "Spiritbone Torc") {
                 //     console.log(`add skill: ${artifactSkill}`);
                 //     console.log(artifact);
                 // }

@@ -2,87 +2,27 @@ import { Box, Checkbox, Heading, Image, ListItem, Text, UnorderedList, VStack } 
 import useArtifactStore from "../state-management/artifactStore";
 import starImage from "../assets/star.webp";
 import { useState } from "react";
-
-const ARTIFACT_TYPE = [
-    {
-        rank: "legendary",
-        color: "#c3ab76"
-    },
-    {
-        rank: "exemplar",
-        color: "#6f0000"
-    }
-];
+import BlurImage from "./BlurImage";
+import RoleBadgeList from "./RoleBadgeList";
+import ArtifactRankSelection from "./ArtifactRankSelection";
 
 const ArtifactInfo = () => {
-    const { artifact } = useArtifactStore();
-    const [artifactRank, setArtifactRank] = useState("legendary");
+    const { artifact, selectedArtifactRank } = useArtifactStore();
     const [isMaxLevel, setIsMaxLevel] = useState(false);
+
 
     if (!artifact)
         return;
 
-    const handleOnClick = (e: React.MouseEvent<HTMLUListElement, MouseEvent>) => {
-        const target = e.target as HTMLElement;
-
-        const selectedRank = target.closest("li")?.id;
-        if (selectedRank === undefined)
-            return;
-        setArtifactRank(selectedRank);
-    }
-
     return (
         <Box>
             {artifact.is_exemplar &&
-                <UnorderedList
-                    display="flex"
-                    fontWeight="bold"
-                    listStyleType="none"
-                    margin={0}
-                    onClick={(e) => handleOnClick(e)}
-                >
-                    {ARTIFACT_TYPE.map((type, idx) => (
-                        <ListItem
-                            key={idx}
-                            id={type.rank}
-                            backgroundColor={artifactRank === type.rank ? type.color : "unset"}
-                            padding={1}
-                            textAlign="center"
-                            width="100%"
-                            color={artifactRank === type.rank ? "white" : "inherit"}
-                        >
-                            {type.rank}
-                        </ListItem>
-
-                    ))}
-                    {/* <Text
-                        backgroundColor={artifactRank === "legendary" ? "#c3ab76" : "unset"}
-                        id="legendary"
-                        padding={1}
-                        textAlign="center"
-                        width="100%"
-                    >
-                        Legendary
-                    </Text>
-                    <Text
-                        backgroundColor={artifactRank === "exemplar" ? "#6f0000" : "unset"}
-                        id="exemplar"
-                        padding={1}
-                        textAlign="center"
-                        width="100%"
-                    >
-                        Exemplar
-                    </Text> */}
-                </UnorderedList>
+                <ArtifactRankSelection />
             }
-            <VStack>
-                <VStack>
-                    <Box width="50vw">
-                        <Image
-                            src={artifact.image}
-                            alt={`${artifact.name} image`}
-                            width="100%"
-                        />
+            <VStack mt={artifact.rarity === 1 ? 4 : 0}>
+                <VStack gap={0}>
+                    <Box width={{ base: "200px" }} className="artifact-image" pt={8}>
+                        <BlurImage src={artifact.image} alt={`${artifact.name} image`} />
                     </Box>
                     <UnorderedList margin={0}
                         display="flex"
@@ -99,19 +39,20 @@ const ArtifactInfo = () => {
                         ))}
                     </UnorderedList>
                 </VStack>
-                <Box>
-                    <Heading as="h1" size="h1">{artifact.name}</Heading>
-                </Box>
-                <Box width="100%">
-                    <Text>Stats</Text>
-                    <UnorderedList listStyleType="none" margin={0} width="100%">
+                <VStack mb={4}>
+                    <Heading as="h1" size="h1" textAlign="center">{artifact.name}</Heading>
+                    <RoleBadgeList roles={artifact.roles} gap={4} />
+                </VStack>
+                <Box width="100%" px={{ base: 2, sm: 0 }} transition="padding 0.3s ease-in-out" maxWidth="390px">
+                    <Text fontWeight="bold" fontSize={{ base: "1.2rem" }}>Stats</Text>
+                    <UnorderedList listStyleType="none" margin={0} width="100%" minHeight={artifact.is_exemplar ? "150px" : "unset"}>
                         {artifact.stats.map((stat, idx) => {
-                            if (artifactRank !== "exemplar" && idx > 3)
+                            if (selectedArtifactRank === "Legendary" && idx > 3)
                                 return
                             return (
                                 <ListItem key={idx} display="flex" flexDir="row" justifyContent="space-between">
                                     <Text>{stat.name}</Text>
-                                    <Text>{!isMaxLevel ? stat.values[0] : stat.values[1]}%</Text>
+                                    <Text textColor="teal" fontWeight="bold">{!isMaxLevel ? stat.values[0] : stat.values[1]}%</Text>
                                 </ListItem>
                             )
                         })}

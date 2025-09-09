@@ -12,18 +12,7 @@ const BlurImage = ({ src, alt }: BlurImageProps) => {
 
     return (
         <Box position="relative" width="100%" height="100%">
-            {/* Placeholder while image loads */}
             {!loaded && (
-                // <Skeleton
-                //   position="absolute"
-                //   top={0}
-                //   left={0}
-                //   width="100%"
-                //   height="100%"
-                //   startColor="gray.300"
-                //   endColor="gray.500"
-                //   borderRadius="md"
-                // />
                 <Box
                     position="absolute"
                     top={0}

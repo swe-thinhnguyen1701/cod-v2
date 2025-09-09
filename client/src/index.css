@@ -129,10 +129,20 @@ html {
     }
 }
 
-
 @keyframes spin {
     100% {
         transform: rotateY(360deg)
+    }
+}
+
+/* artifact */
+.artifact-image {
+    animation: 4s ease-in-out 0s infinite alternate none running breath;
+}
+
+@keyframes breath {
+    100% {
+        transform: translateY(-30px);
     }
 }
 

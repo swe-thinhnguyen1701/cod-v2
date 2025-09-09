@@ -19,8 +19,10 @@ function App() {
     <ApolloProvider client={client}>
       <VStack>
         <NavBar />
-        <Box minHeight="100vh" pt="120px">
-          <Outlet />
+        <Box minHeight="100vh" pt="150px" width="100%">
+          <Box maxWidth="1500px" mx="auto">
+            <Outlet />
+          </Box>
         </Box>
         <Footer />
       </VStack>

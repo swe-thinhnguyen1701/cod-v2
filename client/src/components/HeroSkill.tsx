@@ -8,13 +8,13 @@ import SectionHeading from "./SectionHeading";
 
 const HeroSkill = () => {
     const { hero } = useHeroStore();
-    const {setSelectedSkill} = useSkillStore();
+    const {setHeroSkill} = useSkillStore();
 
     useEffect(() => {
         if (hero?.skills[0]) {
-            setSelectedSkill(hero.skills[0]);
+            setHeroSkill(hero.skills[0]);
         }
-    }, [hero, setSelectedSkill]);
+    }, [hero, setHeroSkill]);
 
     if (!hero)
         return null;

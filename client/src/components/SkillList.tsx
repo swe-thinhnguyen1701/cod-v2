@@ -5,19 +5,18 @@ import { useState } from "react";
 
 interface Props {
     skills: [SkillEntity],
-    type: "hero" | "pet" | "artifact"
+    type: "hero" | "pet"
     owner: string
 }
 
 const SKILL_IMG_URLS = [
     "https://d3bhl6gkk81cq1.cloudfront.net/hero-skills/",
     "https://d3bhl6gkk81cq1.cloudfront.net/pet-skills/",
-    "https://d3bhl6gkk81cq1.cloudfront.net/artifact-skills/"
 ];
 
 const SkillList = ({ skills, type, owner }: Props) => {
     const [selectedItem, setSelectedItem] = useState(0);
-    const { setSelectedSkill } = useSkillStore();
+    const { setHeroSkill } = useSkillStore();
 
     const handleClick = (e: React.MouseEvent<HTMLUListElement, MouseEvent>) => {
         const target = e.target as HTMLElement;
@@ -29,15 +28,13 @@ const SkillList = ({ skills, type, owner }: Props) => {
         if (isNaN(idx) || !skills[idx]) {
             return;
         }
-        setSelectedSkill(skills[idx]);
+        setHeroSkill(skills[idx]);
         setSelectedItem(idx);
     }
 
     const SKILL_IMG_URL = type === "hero"
         ? SKILL_IMG_URLS[0]
-        : type === "pet"
-            ? SKILL_IMG_URLS[1]
-            : SKILL_IMG_URLS[2];
+        : SKILL_IMG_URLS[1]
 
     return (
         <UnorderedList
@@ -48,7 +45,7 @@ const SkillList = ({ skills, type, owner }: Props) => {
             margin={0}
             maxWidth={{ base: "93vw", md: "none" }}
             overflowX={{ base: "scroll", md: "unset" }}
-            overflowY={{base: "hidden", md: "unset"}}
+            overflowY={{ base: "hidden", md: "unset" }}
             onClick={(e) => handleClick(e)}
             cursor="pointer"
             height={{ base: "100px" }}

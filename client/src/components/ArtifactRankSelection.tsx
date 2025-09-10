@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ListItem, UnorderedList } from "@chakra-ui/react";
+import { ListItem, Text, UnorderedList } from "@chakra-ui/react";
 import useArtifactStore from "../state-management/artifactStore";
 
 const ARTIFACT_RANK = [
@@ -50,7 +50,7 @@ const ArtifactRankSelection = () => {
                     _hover={{textDecor:"underline"}}
                     transition={"background-color 0.3s ease-in-out"}
                 >
-                    {type.rank}
+                    <Text as="span">{type.rank}</Text>
                 </ListItem>
 
             ))}

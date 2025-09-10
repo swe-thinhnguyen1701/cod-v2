@@ -40,7 +40,7 @@ const SkillList = ({ skills, type, owner }: Props) => {
         <UnorderedList
             display="flex"
             flexDirection={{ base: "row", lg: "column" }}
-            gap={{ base: 4, md: 8, lg: 4 }}
+            gap={{ base: 8, md: 8, lg: 4 }}
             listStyleType="none"
             margin={0}
             maxWidth={{ base: "93vw", md: "none" }}
@@ -50,6 +50,7 @@ const SkillList = ({ skills, type, owner }: Props) => {
             cursor="pointer"
             height={{ base: "100px" }}
             pt={4}
+            pl={4}
         >
             {skills.map((skill, idx) => (
                 <ListItem

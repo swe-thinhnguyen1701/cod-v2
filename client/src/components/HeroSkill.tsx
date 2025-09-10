@@ -8,7 +8,7 @@ import SectionHeading from "./SectionHeading";
 
 const HeroSkill = () => {
     const { hero } = useHeroStore();
-    const {setHeroSkill} = useSkillStore();
+    const { setHeroSkill } = useSkillStore();
 
     useEffect(() => {
         if (hero?.skills[0]) {
@@ -24,9 +24,9 @@ const HeroSkill = () => {
     return (
         <VStack alignItems="start">
             <SectionHeading title="Skills" />
-            <Flex flexDir={{ base: "column", lg: "row" }} gap={4}>
+            <Flex flexDir={{ base: "column", lg: "row" }} gap={4} width={{base: "100%", lg: "700px"}}>
                 <SkillList skills={hero.skills} owner={hero.name} type={"hero"} />
-                <Divider />
+                <Divider display={{md: "none"}} />
                 <SkillInfo />
             </Flex>
         </VStack>

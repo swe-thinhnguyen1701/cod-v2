@@ -2,7 +2,6 @@ import { Box, ScaleFade, Heading, ListItem, Text, UnorderedList, VStack } from "
 import useSkillStore from "../state-management/skillStore";
 import TextEffect from "./TextEffect";
 import useArtifactStore from "../state-management/artifactStore";
-// import { select } from "framer-motion/client";
 
 // pet skill: if talent maybe rage, otherwise passive
 // hero skill: if a skill has rage_cost, then it is a rage skill. otherwise passive
@@ -23,9 +22,9 @@ const SkillInfo = () => {
         >
             <VStack
                 alignItems="start"
-                width={{ base: "100vw" }}
-                maxWidth={{ base: "450px", md: "500px", lg: "550px" }}
-                height={{ base: "400px", lg: "530px" }}
+                width={{ base: "100%" }}
+                // maxWidth={{ base: "450px", md:"unset", lg: "550px" }}
+                height={isArtifactSkill ? "auto" : { base: "400px", lg: "530px" }}
                 overflowY={"auto"}
                 spacing={2}
                 p={2}>
@@ -56,7 +55,7 @@ const SkillInfo = () => {
                         <TextEffect text={selectedSkill.additional_effect} />
                     </Box>
                 }
-                <Box >
+                <Box my={4}>
                     <UnorderedList listStyleType="none" margin={0}>
                         {selectedSkill.previews.length > 0
                             ? <ListItem>
@@ -73,7 +72,7 @@ const SkillInfo = () => {
                     isArtifactSkill && selectedArtifactRank === "Exemplar" &&
                     <Box>
                         <Text fontWeight="bold">Exemplar Effect</Text>
-                        <Text>{selectedSkill.exemplar_effect}</Text>
+                        <TextEffect text={selectedSkill.exemplar_effect ?? ""} />
                     </Box>
                 }
             </VStack>

@@ -13,7 +13,7 @@ const RoleBadgeList = ({ roles, gap, isShorten }: Props) => {
         <UnorderedList display="flex" listStyleType="none" padding={0} margin={0} gap={gap}>
             {roles.map((role, idx) => (
                 <ListItem key={idx}>
-                    <RoleBadge role={role} type={idx} isShorten={isShorten} />
+                    <RoleBadge role={role} rank={role.rank} isShorten={isShorten} />
                 </ListItem>
             ))}
         </UnorderedList>

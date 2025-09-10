@@ -11,8 +11,12 @@ const roleSchema = new Schema({
     type: String,
     required: true,
   },
-  icon: {
+  image: {
     type: String,
+  },
+  rank: {
+    type: Number,
+    required: true,
   }
 });
 

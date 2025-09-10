@@ -2,6 +2,7 @@ const typeDefs = `
     type Role {
         name: String,
         description: String
+        rank: Int
     }
 
     type Faction {

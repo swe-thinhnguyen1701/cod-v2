@@ -1,19 +1,26 @@
+import { useEffect } from "react";
 import { useQuery } from "@apollo/client";
+import useArtifactStore from "../state-management/artifactStore";
+import { Link } from "react-router-dom";
 import { GET_ALL_ARTIFACTS } from "../graphql/queries";
 import { Heading, UnorderedList, ListItem, Text, VStack } from "@chakra-ui/react";
-import type HeroBriefEntity from "../entities/HeroEntity";
 import ItemCard from "../components/ItemCard";
 import Spinner from "../components/Spinner";
-import { Link } from "react-router-dom";
+import type HeroBriefEntity from "../entities/HeroEntity";
 
 const ArtifactPage = () => {
     const { data, error, loading } = useQuery(GET_ALL_ARTIFACTS);
+    const { resetArtifactRank } = useArtifactStore();
 
-    if (loading){
+    useEffect(() => {
+        resetArtifactRank();
+    }, [])
+
+    if (loading) {
         return (
-         <VStack minHeight="90vh" justifyContent="center">
-            <Spinner />
-         </VStack>   
+            <VStack minHeight="90vh" justifyContent="center">
+                <Spinner />
+            </VStack>
         )
     }
 

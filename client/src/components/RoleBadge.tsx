@@ -3,7 +3,7 @@ import type RoleEntity from "../entities/RoleEntity";
 
 interface Props {
     role: RoleEntity;
-    type: number
+    rank: number
     isShorten?: boolean
 }
 
@@ -13,11 +13,11 @@ const BG_COLORS = ["rgb(133, 23, 23)", "rgb(172, 94, 4)", "rgb(8, 141, 178)"];
 const ROLE_ICON_SIZE = "30px";
 const IMG_SRC_LINK = "https://d3bhl6gkk81cq1.cloudfront.net/hero-roles/";
 
-const RoleBadge = ({ role, type, isShorten }: Props) => {
+const RoleBadge = ({ role, rank, isShorten }: Props) => {
     return (
         <Tooltip hasArrow label={role.description}>
             <HStack
-                bg={`linear-gradient(90deg, ${BG_COLORS[type]} 0%, rgba(0,0,0,1) 90%)`}
+                bg={`linear-gradient(90deg, ${BG_COLORS[rank]} 0%, rgba(0,0,0,1) 90%)`}
                 borderRadius="5px"
                 position="relative"
                 color="white"
@@ -27,8 +27,8 @@ const RoleBadge = ({ role, type, isShorten }: Props) => {
                 pr={3}
                 cursor="default"
             >
-                <Box border={`solid 2px ${ROLE_BORDER_COLORS[type]}`}
-                    bg={ROLE_BG_COLORS[type]}
+                <Box border={`solid 2px ${ROLE_BORDER_COLORS[rank]}`}
+                    bg={ROLE_BG_COLORS[rank]}
                     borderRadius="50%"
                     width={ROLE_ICON_SIZE}
                     height={ROLE_ICON_SIZE}

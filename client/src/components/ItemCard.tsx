@@ -1,12 +1,13 @@
 import { Card, CardBody, CardFooter, Heading } from "@chakra-ui/react";
 import type HeroBriefEntity from "../entities/HeroEntity";
-import type ArtifactEntity from "../entities/ArtifactEntity";
+import type ArtifactBriefEnity from "../entities/ArtifactEntity";
+import type PetBriefEntity from "../entities/PetEntity";
 import RoleBadgeList from "./RoleBadgeList";
 // import { useState } from "react";
 import BlurImage from "./BlurImage";
 
 interface Props {
-    data: HeroBriefEntity | ArtifactEntity
+    data: HeroBriefEntity | ArtifactBriefEnity | PetBriefEntity;
 }
 
 // const HERO_IMG_URL = "https://d3bhl6gkk81cq1.cloudfront.net/hero-full/"

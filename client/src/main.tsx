@@ -10,6 +10,7 @@ import HomePage from "./pages/HomePage.tsx";
 import ErrorPage from "./pages/ErrorPage.tsx";
 import HeroPage from "./pages/HeroPage.tsx";
 import ArtifactPage from "./pages/ArtifactPage.tsx";
+import PetPage from "./pages/PetPage.tsx";
 import HeroDetailPage from "./pages/HeroDetailPage.tsx";
 import PetDetailPage from "./pages/PetDetailPage.tsx";
 import ArtifactDetailPage from "./pages/ArtifactDetailPage.tsx";
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/artifacts",
         element: <ArtifactPage />
+      },
+      {
+        path: "/pets",
+        element: <PetPage />
       },
       {
         path: "/heroes/:heroName",

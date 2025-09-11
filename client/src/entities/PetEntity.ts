@@ -1,6 +1,11 @@
 import type RoleEntity from "./RoleEntity";
 // import type SkillEntity from "./SkillEntity";
 
+interface PetAttribute {
+    name: string,
+    value: number
+}
+
 // update pet entity later when pet skill data is ready
 // temporarily use string to describe pet skill
 export default interface PetEntity {
@@ -17,7 +22,7 @@ export default interface PetEntity {
 export default interface PetBriefEntity {
     id: string,
     name: string,
-    attirbutes: number[],
+    attributes: PetAttribute[],
     roles: RoleEntity[],
     image: string
     rarity: number

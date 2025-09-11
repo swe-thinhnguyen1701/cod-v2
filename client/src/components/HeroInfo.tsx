@@ -47,7 +47,7 @@ const HeroInfo = () => {
                 <VStack maxWidth="550px" alignItems="start" gap={5} alignSelf={{ md: "center" }} pl={{ base: 0, lg: 8, xl: 10 }}>
                     <HStack gap={4} alignItems="center">
                         <Box>
-                            <Tooltip label={<FactionDescription faction={hero.faction} showDescription={true}/>} closeOnClick={false}>
+                            <Tooltip label={<FactionDescription faction={hero.faction} showDescription={true} />} closeOnClick={false}>
                                 <Box>
                                     <Image
                                         src={hero.faction.name === "Wilderburg" ? wilderburgFaction : hero.faction.name === "Springwardens" ? springwardensFaction : leagueOfOrderFaction}
@@ -78,7 +78,8 @@ const HeroInfo = () => {
                                         <Text as="span" pt={2}>
                                             <GiLibertyWing />
                                         </Text>
-                                    </Tooltip>}
+                                    </Tooltip>
+                                }
                             </HStack>
                         </VStack>
                     </HStack>

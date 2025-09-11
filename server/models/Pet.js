@@ -31,6 +31,10 @@ const petSchema = new Schema({
         type: String,
         required: true,
         trim: true
+    },
+    rarity: {
+        type: Number,
+        default: 1
     }
 });
 

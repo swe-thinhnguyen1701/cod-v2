@@ -108,6 +108,7 @@ export const GET_ALL_PETS = gql`
         rank
       }
       image
+      rarity
     }
   }
 `;

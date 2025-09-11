@@ -61,6 +61,7 @@ const typeDefs = `
         name: String!
         roles: [Role]
         image: String
+        rarity: Int
     }
 
     type HeroDetails {

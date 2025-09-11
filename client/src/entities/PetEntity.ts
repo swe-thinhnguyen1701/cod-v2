@@ -13,10 +13,12 @@ export default interface PetEntity {
     image: string
 }
 
+// set rarity = 1 as a default value
 export default interface PetBriefEntity {
     id: string,
     name: string,
     attirbutes: number[],
     roles: RoleEntity[],
     image: string
+    rarity: number
 }

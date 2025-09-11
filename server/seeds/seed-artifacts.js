@@ -13,16 +13,6 @@ const seedArtifacts = async () => {
                 const artifactSkill = await Skill.findOne({ owner: artifact.name });
                 artifact.skills = artifactSkill?._id;
 
-                // const roles = [];
-                // for (let i = 0; i < artifact.roles.length; i++) {
-                //     const role = await Role.findOne({ name: artifact.roles[i] });
-                //     if (!role) {
-                //         console.log(artifact.roles[i]);
-                //         throw new Error(`Role not found for artifact: ${artifact.name}`);
-                //     }
-                //     roles.push(role._id);
-                // }
-                // artifact.roles = roles;
                 artifact.roles = await Promise.all(
                     artifact.roles.map(async (roleName) => {
                         const role = await Role.findOne({ name: roleName });

@@ -10,7 +10,8 @@
     "seed-heroes": "node seeds/seed-heroes.js",
     "seed-skills": "node seeds/seed-skills.js",
     "seed-roles": "node seeds/seed-roles.js",
-    "seed-artifacts": "node seeds/seed-artifacts.js"
+    "seed-artifacts": "node seeds/seed-artifacts.js",
+    "seed-pets": "node seeds/seed-pets.js"
   },
   "keywords": [],
   "author": "",

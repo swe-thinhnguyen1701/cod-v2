@@ -35,6 +35,34 @@ const typeDefs = `
         image: String
    }
 
+   type PetSkill {
+        name: String
+    }
+
+    type HeroBrief {
+        id: ID!
+        name: String!
+        roles: [Role]
+        rarity: Int
+        image: String
+    }
+
+    type ArtifactBrief {
+        id: ID!
+        name: String!
+        rarity: Int!
+        roles: [Role]!
+        is_exemplar: Boolean!
+        image: String
+    }
+
+    type PetBrief {
+        id: ID!
+        name: String!
+        roles: [Role]
+        image: String
+    }
+
     type HeroDetails {
         artifacts: [String]
         description: String!
@@ -51,14 +79,6 @@ const typeDefs = `
         image: String
     }
 
-    type HeroBrief {
-        id: ID!
-        name: String!
-        roles: [Role]
-        rarity: Int
-        image: String
-    }
-
     type ArtifactDetais {
         name: String!
         rarity: Int!
@@ -69,20 +89,23 @@ const typeDefs = `
         image: String
     }
 
-    type ArtifactBrief {
-        id: ID!
-        name: String!
-        rarity: Int!
-        roles: [Role]!
-        is_exemplar: Boolean!
+    type PetDetails {
+        name: String
+        attributes: [Int]
+        roles: [Role]
+        recommended_skills: [[String]]
+        recommended_heroes: [String]
+        is_flying: Boolean
         image: String
     }
 
     type Query {
-        getHeroDetailByName(heroName: String!): HeroDetails
         getAllHeroes: [HeroBrief]
-        getArtifactDetailByName(artifactName: String!): ArtifactDetais
         getAllArtifacts: [ArtifactBrief]
+        getAllPets: [PetBrief]
+        getHeroDetailByName(heroName: String!): HeroDetails
+        getArtifactDetailByName(artifactName: String!): ArtifactDetais
+        getPetDetailByName(petName: String!): PetDetails
     }
 `
 

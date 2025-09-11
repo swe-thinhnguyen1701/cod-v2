@@ -1,5 +1,5 @@
 const { get } = require('mongoose');
-const {Hero, Artifact} = require('../models');
+const {Hero, Artifact, Pet} = require('../models');
 
 const resolvers = {
     Query: {
@@ -30,6 +30,20 @@ const resolvers = {
                 throw new Error('Artifact not found');
             }
             return artifact;
+        },
+        getAllPets: async () => {
+            const pets = await Pet.find().populate("roles").sort({name: 1});
+            if (!pets || pets.length === 0) {
+                throw new Error('No pets found');
+            }
+            return pets;
+        },
+        getPetDetailByName: async (_parent, {petName}) => {
+            const pet = await Pet.findOne({name: petName}).populate(["roles"]);
+            if (!pet) {
+                throw new Error('Pet not found');
+            }
+            return pet;
         }
     }
 }

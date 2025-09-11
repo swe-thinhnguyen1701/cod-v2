@@ -117,16 +117,19 @@ export const GET_PET_DETAIL_BY_NAME = gql`
   query getPetDetailByName($petName: String!) {
     getPetDetailByName(petName: $petName) {
       name
-      attributes
+      attributes {
+        name
+        value
+      }
       roles {
         name
         description
         rank
       }
-      skills
       recommended_heroes
       recommended_skills
       image
+      is_flying
     }
   }
 `;

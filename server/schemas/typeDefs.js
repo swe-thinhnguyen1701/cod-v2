@@ -35,6 +35,11 @@ const typeDefs = `
         image: String
    }
 
+   type PetAttribute {
+        name: String
+        value: Int
+    }
+
    type PetSkill {
         name: String
     }
@@ -92,7 +97,7 @@ const typeDefs = `
 
     type PetDetails {
         name: String
-        attributes: [Int]
+        attributes: [PetAttribute]
         roles: [Role]
         recommended_skills: [[String]]
         recommended_heroes: [String]

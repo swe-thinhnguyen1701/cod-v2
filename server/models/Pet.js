@@ -7,8 +7,14 @@ const petSchema = new Schema({
         trim: true
     },
     attributes: [{
-        type: Number,
-        required: true
+        name: {
+            type: String,
+            required: true,
+        },
+        value: {
+            type: Number,
+            required: true,
+        }
     }],
     roles: [{
         type: Schema.Types.ObjectId,

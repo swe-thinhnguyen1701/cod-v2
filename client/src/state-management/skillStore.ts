@@ -9,6 +9,7 @@ interface SkillStore {
   setHeroSkill: (skill: SkillEntity) => void;
   setArtifactSkill: (skill: SkillEntity) => void;
   setPetSkill: (skill: SkillEntity) => void;
+  reset: () => void;
 }
 
 const useSkillStore = create<SkillStore>((set) => ({
@@ -36,6 +37,13 @@ const useSkillStore = create<SkillStore>((set) => ({
       isHeroSkill: false,
       isArtifactSkill: false,
       isPetSkill: true,
+    }),
+  reset: () =>
+    set({
+      selectedSkill: null,
+      isHeroSkill: false,
+      isArtifactSkill: false,
+      isPetSkill: false,
     }),
 }));
 

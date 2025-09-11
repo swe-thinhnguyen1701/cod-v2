@@ -14,7 +14,7 @@ const ArtifactPage = () => {
 
     useEffect(() => {
         resetArtifactRank();
-    }, [])
+    }, []);
 
     if (loading) {
         return (

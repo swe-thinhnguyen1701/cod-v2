@@ -6,7 +6,7 @@ import { GET_ALL_ARTIFACTS } from "../graphql/queries";
 import { Heading, UnorderedList, ListItem, Text, VStack } from "@chakra-ui/react";
 import ItemCard from "../components/ItemCard";
 import Spinner from "../components/Spinner";
-import type HeroBriefEntity from "../entities/HeroEntity";
+import type {HeroBriefEntity} from "../entities/HeroEntity";
 
 const ArtifactPage = () => {
     const { data, error, loading } = useQuery(GET_ALL_ARTIFACTS);

@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type HeroEntity from "../entities/HeroEntity";
+import type {HeroEntity} from "../entities/HeroEntity";
 
 interface HeroStore {
   hero: HeroEntity | null;

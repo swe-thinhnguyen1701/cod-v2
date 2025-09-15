@@ -49,7 +49,6 @@ const ArtifactInfo = () => {
                     <Text>
                         <Text as="span">Level: </Text>
                         <Text as="span" fontWeight="bold">
-                            {/* {isMaxLevel ? `${60 - 10 * (artifact.rarity - 1)}` : 1}/{60 - 10 * (artifact.rarity - 1)} */}
                             <CountUp start={1} end={isMaxLevel ? 60 - 10 * (artifact.rarity - 1) : 1} />/{60 - 10 * (artifact.rarity - 1)}
                         </Text>
                     </Text>

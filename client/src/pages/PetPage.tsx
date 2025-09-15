@@ -4,7 +4,7 @@ import { Heading, ListItem, Text, UnorderedList, VStack } from "@chakra-ui/react
 import Spinner from "../components/Spinner";
 import { Link } from "react-router-dom";
 import ItemCard from "../components/ItemCard";
-import type PetBriefEntity from "../entities/PetEntity";
+import type { PetBriefEntity } from "../entities/PetEntity";
 import usePetStore from "../state-management/petStore";
 import { useEffect } from "react";
 

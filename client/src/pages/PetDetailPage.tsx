@@ -7,6 +7,7 @@ import { useQuery } from "@apollo/client";
 import Spinner from "../components/Spinner";
 import PetInfo from "../components/PetInfo";
 import { useEffect } from "react";
+import PetSkill from "../components/PetSkill";
 
 const PetDetailPage = () => {
     const { petName: petName } = useParams();
@@ -28,9 +29,12 @@ const PetDetailPage = () => {
 
 
     return (
-        <Flex>
+        <Flex width="100%" flexDir={{base: "column"}}>
             <Card py={4} width={{base: "100%", lg: "550px"}}>
                 <PetInfo />
+            </Card>
+            <Card width={{base: "100%", lg: "700px"}}>
+                <PetSkill />
             </Card>
         </Flex>
     )

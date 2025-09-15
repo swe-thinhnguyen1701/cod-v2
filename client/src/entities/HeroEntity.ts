@@ -2,7 +2,7 @@ import type FactionEntity from "./FactionEntity";
 import type RoleEntity from "./RoleEntity";
 import type SkillEntity from "./SkillEntity";
 
-export default interface HeroEntity {
+export interface HeroEntity {
     id: string,
     name: string,
     description: string,
@@ -18,7 +18,7 @@ export default interface HeroEntity {
     image: string
 }
 
-export default interface HeroBriefEntity {
+export interface HeroBriefEntity {
     id: string,
     name: string,
     roles: [RoleEntity],

@@ -25,7 +25,7 @@ const HeroSkill = () => {
         <VStack alignItems="start">
             <SectionHeading title="Skills" />
             <Flex flexDir={{ base: "column", lg: "row" }} gap={4} width={{base: "100%", lg: "700px"}}>
-                <SkillList skills={hero.skills} owner={hero.name} type={"hero"} />
+                <SkillList skills={hero.skills} />
                 <Divider display={{md: "none"}} />
                 <SkillInfo />
             </Flex>

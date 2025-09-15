@@ -2,7 +2,7 @@ import { Box, Image, ListItem, Tooltip, UnorderedList } from "@chakra-ui/react";
 import SectionHeading from "./SectionHeading";
 import useHeroStore from "../state-management/heroStore";
 import Spinner from "./Spinner";
-import type HeroEntity from "../entities/HeroEntity";
+import type {HeroEntity} from "../entities/HeroEntity";
 import shrug from "../assets/emoji/shrug.png"
 import { Link } from "react-router-dom";
 

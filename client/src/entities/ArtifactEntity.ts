@@ -7,7 +7,7 @@ interface ArtifactStat {
   image: string;
 }
 
-export default interface ArtifactEntity {
+export interface ArtifactEntity {
   name: string;
   rarity: number;
   roles: RoleEntity[];
@@ -19,7 +19,7 @@ export default interface ArtifactEntity {
   is_exemplar: boolean;
 }
 
-export default interface ArtifactBriefEntity {
+export interface ArtifactBriefEntity {
   id: string;
   name: string;
   rarity: number;

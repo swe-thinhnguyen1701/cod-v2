@@ -5,16 +5,9 @@ import { useState } from "react";
 
 interface Props {
     skills: [SkillEntity],
-    type: "hero" | "pet"
-    owner: string
 }
 
-const SKILL_IMG_URLS = [
-    "https://d3bhl6gkk81cq1.cloudfront.net/hero-skills/",
-    "https://d3bhl6gkk81cq1.cloudfront.net/pet-skills/",
-];
-
-const SkillList = ({ skills, type, owner }: Props) => {
+const SkillList = ({ skills }: Props) => {
     const [selectedItem, setSelectedItem] = useState(0);
     const { setHeroSkill } = useSkillStore();
 
@@ -31,10 +24,6 @@ const SkillList = ({ skills, type, owner }: Props) => {
         setHeroSkill(skills[idx]);
         setSelectedItem(idx);
     }
-
-    const SKILL_IMG_URL = type === "hero"
-        ? SKILL_IMG_URLS[0]
-        : SKILL_IMG_URLS[1]
 
     return (
         <UnorderedList
@@ -67,7 +56,7 @@ const SkillList = ({ skills, type, owner }: Props) => {
                     className="list-item"
                 >
                     <Box width={{ base: "30px", md: "50px" }}>
-                        <Image src={`${SKILL_IMG_URL}${owner}-${idx + 1}.png`} alt={`${skill.name} skill image`} />
+                        <Image src={skill.image} alt={`${skill.name} skill image`} />
                     </Box>
                     <Text
                         textTransform="uppercase"

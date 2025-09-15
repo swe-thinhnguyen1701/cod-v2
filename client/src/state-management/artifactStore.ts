@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type ArtifactEntity from "../entities/ArtifactEntity";
+import type {ArtifactEntity} from "../entities/ArtifactEntity";
 
 interface ArtifactStore {
   artifact: ArtifactEntity | null;

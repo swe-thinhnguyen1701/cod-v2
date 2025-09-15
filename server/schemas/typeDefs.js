@@ -42,6 +42,12 @@ const typeDefs = `
 
    type PetSkill {
         name: String
+        description: [String]
+        scaling_values: [[Float]]
+        attribute: String
+        is_rage: Boolean
+        is_talent: Boolean
+        image: String
     }
 
     type HeroBrief {
@@ -99,7 +105,7 @@ const typeDefs = `
         name: String
         attributes: [PetAttribute]
         roles: [Role]
-        recommended_skills: [[String]]
+        recommended_skills: [[PetSkill]]
         recommended_heroes: [String]
         is_flying: Boolean
         image: String

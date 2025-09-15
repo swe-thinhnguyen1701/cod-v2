@@ -1,4 +1,4 @@
-const { Pet, Role } = require("../models");
+const { Pet, Role, PetSkill } = require("../models");
 const db = require("../config/db-connection");
 const pets = require("../database/pets.json");
 
@@ -18,8 +18,21 @@ const seedPets = async () => {
                         return role._id;
                     })
                 );
-                    
-                pet.image = `${PET_IMG_URL}${pet.image}`
+
+                const recommended_skills = [];
+                for(let skillList of pet.recommended_skills) {
+                    const skillIdList = [];
+                    for(let skillName of skillList) {
+                        const skill = await PetSkill.findOne({ name: skillName });
+                        if (!skill)
+                            throw new Error(`Skill not found for pet: ${pet.name}`);
+                        skillIdList.push(skill._id);
+                    }
+                    recommended_skills.push(skillIdList);
+                }
+                pet.recommended_skills = recommended_skills;
+                pet.image = PET_IMG_URL + pet.image;
+                
                 await Pet.create(pet);
             }
         } catch (error) {

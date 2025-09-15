@@ -22,9 +22,9 @@ const petSchema = new Schema({
     }],
     recommended_skills: [[
         {
-            // type: Schema.Types.ObjectId,
-            // ref: "Skill"
-            type: String,
+            type: Schema.Types.ObjectId,
+            ref: "Skill"
+            // type: String,
         }
     ]],
     recommended_heroes: [{

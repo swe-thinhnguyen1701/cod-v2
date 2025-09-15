@@ -127,7 +127,15 @@ export const GET_PET_DETAIL_BY_NAME = gql`
         rank
       }
       recommended_heroes
-      recommended_skills
+      recommended_skills {
+        name
+        description
+        scaling_values
+        attribute
+        is_rage
+        is_talent
+        image
+      }
       image
       is_flying
     }

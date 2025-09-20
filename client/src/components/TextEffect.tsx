@@ -1,14 +1,15 @@
 import { Text, } from "@chakra-ui/react";
 
 interface Props {
-    text: string
+  text: string
+  scalingValue?: number
 }
 
-const textModifier = (text: string) => {
+const textModifier = (text: string, scalingValue: number) => {
   const parts = text.split(
-    /(\{bold\}|\{\/bold\}|\{newline\}|\{lightgrey\}|\{\/lightgrey\}|\{green\}|\{\/green\})/g
+    /(\{bold\}|\{\/bold\}|\{newline\}|\{lightgrey\}|\{\/lightgrey\}|\{green\}|\{\/green\}|\{orange\}|\{\/orange\}|\{scaling_value_1\})/g
   );
-  let effect: "bold" | "lightgrey" | "green" | null = null;
+  let effect: "bold" | "lightgrey" | "green" | "orange" | "scaling_value_1" | null = null;
 
   return parts.map((part, idx) => {
     switch (part) {
@@ -30,6 +31,15 @@ const textModifier = (text: string) => {
       case "{/green}":
         effect = null;
         return null;
+      case "{orange}":
+        effect = "orange";
+        return null;
+      case "{/orange}":
+        effect = null;
+        return null;
+      case "{scaling_value_1}":
+        effect = "scaling_value_1";
+        return null;
       case "{newline}":
         return <br key={idx} />;
       default:
@@ -47,12 +57,29 @@ const textModifier = (text: string) => {
             </Text>
           );
         }
+        if (effect === "orange") {
+          return (
+            <Text as="span" key={idx} color="orange.400" fontWeight="bold">
+              {part}
+            </Text>
+          );
+        }
         if (effect === "bold") {
           return (
             <Text as="span" key={idx} fontWeight="bold">
               {part}
             </Text>
           );
+        }
+        if (effect === "scaling_value_1") {
+          return (
+            <Text as="span" key={idx}>
+              <Text as="span" color="green.500" fontWeight="bold">
+                + {scalingValue.toFixed(2)}
+              </Text>
+              {part}
+            </Text>
+          )
         }
         return (
           <Text as="span" key={idx}>
@@ -63,10 +90,10 @@ const textModifier = (text: string) => {
   });
 };
 
-const TextEffect = ({text}: Props) => {
-    return (
-        <Text>{textModifier(text)}</Text>
-    )
+const TextEffect = ({ text, scalingValue }: Props) => {
+  return (
+    <Text>{textModifier(text, scalingValue ?? 0)}</Text>
+  )
 }
 
 export default TextEffect;

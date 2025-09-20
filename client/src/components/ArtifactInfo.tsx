@@ -1,7 +1,7 @@
 import { Box, Checkbox, Heading, Image, ListItem, Text, UnorderedList, VStack } from "@chakra-ui/react";
 import CountUp from "react-countup";
 import useArtifactStore from "../state-management/artifactStore";
-import starImage from "../assets/star.webp";
+import starImage from "../assets/star.png";
 import { useState } from "react";
 import BlurImage from "./BlurImage";
 import RoleBadgeList from "./RoleBadgeList";

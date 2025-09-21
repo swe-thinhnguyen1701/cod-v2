@@ -27,8 +27,8 @@ const PetPage = () => {
     return (
         <VStack>
             <VStack mb={8}>
-                <Heading as="h1" size="h1">Artifacts</Heading>
-                <Text textAlign="center">Artifacts are powerful items that boost your heroes and shape your battle strategy. Explore the full list below and click on any artifact to see its skills, upgrades, and how to use it effectively.</Text>
+                <Heading as="h1" size="h1">Pets</Heading>
+                <Text textAlign="center">Pets aren’t just companions — they’re a key part of your strategy in Call of Dragons. From boosting your heroes’ strengths to providing powerful combat skills, pets make every legion stronger. Explore our full pet guide below to see their abilities, recommended builds, and how they fit into your overall gameplay. Don’t forget to share your favorite pet strategies with the community!</Text>
             </VStack>
             <UnorderedList display="flex" flexWrap="wrap" justifyContent="center" gap={8} listStyleType="none" padding={0} margin={0}>
                 {pets.map(pet => (

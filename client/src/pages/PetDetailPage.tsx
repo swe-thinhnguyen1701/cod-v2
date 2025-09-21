@@ -31,11 +31,11 @@ const PetDetailPage = () => {
         return <Heading>{`${error.message}`}</Heading>
 
     return (
-        <Flex width="100%" flexDir={{ base: "column", lg: "row" }} gap={8}>
+        <Flex width="100%" flexDir={{ base: "column", lg: "row" }} gap={8} justifyContent={{lg: "center"}}>
             <Card py={4} width={{ base: "100%", lg: "550px" }}>
                 <PetInfo />
             </Card>
-            <Card width={{ base: "100%", lg: "700px" }} py={4}>
+            <Card width={{ base: "100%", lg: "700px", xl: "750px" }} py={4}>
                 <PetSkill />
             </Card>
         </Flex>

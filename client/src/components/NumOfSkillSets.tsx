@@ -14,6 +14,7 @@ const NumOfSkillSets = () => {
             <HStack
                 as="ul"
                 listStyleType="none"
+                justifyContent="center"
                 flexWrap="wrap"
                 mb={4}
             >
@@ -38,7 +39,7 @@ const NumOfSkillSets = () => {
                     </Text>
                 ))}
             </HStack>
-            <Box>
+            <VStack>
                 <Grid
                     as="ul"
                     margin={0}
@@ -47,7 +48,9 @@ const NumOfSkillSets = () => {
                     fontWeight="bold"
                     fontSize="10px"
                     gap={7}
-                // onClick={(e) => onSelectedSkill(e)}
+                    mb={8}
+                    width={{ base: "320px" }}
+                    // pl={{ base: 2 }}
                 >
                     {selectedSkillSet.skills
                         .map((skill, idx) => (
@@ -65,6 +68,7 @@ const NumOfSkillSets = () => {
                                 opacity={idx === selectedSkill.idx ? 1 : 0.5}
                                 _hover={{ transform: "scale(1.2)" }}
                                 onClick={() => setSelectedSkill(idx)}
+                                cursor="default"
                             >
                                 <Box width={"40px"}>
                                     <BlurImage src={skill.image} alt={skill.name} />
@@ -73,8 +77,10 @@ const NumOfSkillSets = () => {
                             </GridItem>
                         ))}
                 </Grid>
-                <PetSkillInfo />
-            </Box>
+                <Box width={{sm: "480px", md: "500px", lg: "520px"}} transition={"width 0.3s ease-in-out"}>
+                    <PetSkillInfo />
+                </Box>
+            </VStack>
         </VStack>
     )
 }

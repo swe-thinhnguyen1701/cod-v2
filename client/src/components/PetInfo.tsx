@@ -33,11 +33,11 @@ const PetInfo = () => {
                 </HStack>
                 <RoleBadgeList roles={pet.roles} gap={4} />
             </VStack>
-            <VStack gap={2} alignItems="start">
+            <VStack gap={2} alignItems="start" overflow="hidden">
                 <Text alignSelf="center" fontWeight="bold" fontSize={{ base: "1.3rem" }}>
                     Attribute
                 </Text>
-                <PetAttributeSliderList />
+                <PetAttributeSliderList defaultAttributes={pet.attributes}/>
             </VStack>
         </VStack>
     )

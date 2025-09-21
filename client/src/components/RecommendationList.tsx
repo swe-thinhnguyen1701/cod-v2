@@ -43,8 +43,6 @@ const RecommendationList = ({ type }: Props) => {
     const { imgUrl, title, getData } = CONFIGS[type];
     const data = getData(hero!);
 
-    console.log(data)
-
     if (!data) return <Spinner />;
 
     return (

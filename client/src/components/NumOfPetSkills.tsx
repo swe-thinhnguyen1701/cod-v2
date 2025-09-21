@@ -17,7 +17,6 @@ const NumOfPetSkills = () => {
                 {Array(5).fill(null).map((_, idx) => (
                     <Button
                         as="li"
-                        // color={selectedNumOfSkillSlots === idx + 4 ? "white" : "initial"}
                         colorScheme={selectedNumOfSkills === idx + 4 ? "yellow" : "gray"}
                         px={4} py={2} cursor="pointer" key={idx}
                         onClick={() => onClickHandler(idx)}

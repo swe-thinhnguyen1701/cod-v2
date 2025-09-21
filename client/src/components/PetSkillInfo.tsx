@@ -1,4 +1,4 @@
-import { Box, Flex, HStack, Image, ScaleFade, Text, VStack } from "@chakra-ui/react";
+import { Box, HStack, Image, ScaleFade, Text, VStack } from "@chakra-ui/react";
 import { useState } from "react";
 import usePetStore from "../state-management/petStore";
 import BlurImage from "./BlurImage";
@@ -41,8 +41,8 @@ const PetSkillInfo = () => {
             initialScale={0.9}
             unmountOnExit
         >
-            <Flex flexDirection={{ base: "column", md: "row" }}>
-                <VStack position="relative">
+            <HStack gap={4} alignItems="start" justifyContent="start">
+                <VStack position="relative" maxHeight="60px">
                     <Box width="60px">
                         <BlurImage
                             src={selectedSkill.skill.image}
@@ -67,7 +67,7 @@ const PetSkillInfo = () => {
                         })}
                     </HStack>
                 </VStack>
-                <VStack>
+                <VStack alignItems="start">
                     <Text fontWeight="bold">{selectedSkill.skill.name}</Text>
                     <Text>{selectedSkill.skill.is_rage ? "Rage Skill" : "Passive"}</Text>
                     <TextEffect
@@ -75,7 +75,7 @@ const PetSkillInfo = () => {
                         scalingValue={petAttributes[getAttributeIdx(selectedSkill.skill.attribute)].value * selectedSkill.skill.scaling_values[0][selectedStars]}
                     />
                 </VStack>
-            </Flex>
+            </HStack>
         </ScaleFade>
     );
 };

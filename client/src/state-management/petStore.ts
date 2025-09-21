@@ -19,7 +19,7 @@ interface PetStore {
   selectedNumOfSkills: number;
   selectedSkillSet: SelectedSkillSet;
   selectedSkill: SelectedSkill | null;
-  initializePetAttributes: (attributes: PetAttribute[]) => void;
+  initializeSelectedPet: (attributes: PetAttribute[]) => void;
   setPet: (pet: PetEntity) => void;
   setAttributeAt: (idx: number, value: number) => void;
   setSelectedNumOfSkills: (numOfSkills: number) => void;
@@ -36,7 +36,7 @@ const usePetStore = create<PetStore>((set) => ({
   selectedSkillSet: { idx: 0, skills: [] },
   selectedSkill: null,
   setPet: (pet: PetEntity) => set({ pet }),
-  initializePetAttributes: (attributes: PetAttribute[]) =>
+  initializeSelectedPet: (attributes: PetAttribute[]) =>
     set((state) => {
       if (!state.pet) return {};
 
@@ -46,6 +46,7 @@ const usePetStore = create<PetStore>((set) => ({
       );
 
       return {
+        selectedNumOfSkills: 4,
         petAttributes: newAttributes,
         numOfSkillSets: numOfSkillSets,
         selectedSkillSet: {

@@ -11,7 +11,7 @@ import type { PetEntity } from "../entities/PetEntity";
 
 const PetDetailPage = () => {
     const { petName: petName } = useParams();
-    const { setPet, initializePetAttributes } = usePetStore();
+    const { setPet, initializeSelectedPet } = usePetStore();
     const { loading, error, data } = useQuery(GET_PET_DETAIL_BY_NAME, ({
         variables: { petName: petName }
     }));
@@ -20,9 +20,9 @@ const PetDetailPage = () => {
         if (data) {
             const pet: PetEntity = data.getPetDetailByName;
             setPet(pet);
-            initializePetAttributes(pet.attributes);
+            initializeSelectedPet(pet.attributes);
         }
-    }, [data, petName, setPet, initializePetAttributes]);
+    }, [data, petName, setPet, initializeSelectedPet]);
 
     if (loading)
         return <Spinner />
@@ -35,7 +35,7 @@ const PetDetailPage = () => {
             <Card py={4} width={{ base: "100%", lg: "550px" }}>
                 <PetInfo />
             </Card>
-            <Card width={{ base: "100%", lg: "700px" }}>
+            <Card width={{ base: "100%", lg: "700px" }} py={4}>
                 <PetSkill />
             </Card>
         </Flex>

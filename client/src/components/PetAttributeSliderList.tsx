@@ -3,21 +3,20 @@
 
 import { Box, Grid, GridItem, HStack, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Text, VStack } from "@chakra-ui/react";
 import usePetStore from "../state-management/petStore";
-import { memo, useState } from "react";
+import { useEffect, useState } from "react";
 import type { PetAttribute } from "../entities/PetEntity";
 
 // i.e. 200 points = (200 * 200 / 347)px
 const DEFAULT_ATTRIBUTE_BAR_WIDTH = [100, 200];
 const MAX_ATTRIBUTE_VAL = 347;
 
-interface Props {
-    defaultAttributes: PetAttribute[];
-}
-
-const PetAttributeSliderList = memo(({ defaultAttributes }: Props) => {
-    const { setAttributeAt } = usePetStore();
-    const [sliderValue, setSliderValue] = useState<PetAttribute[]>(defaultAttributes);
-
+const PetAttributeSliderList = () => {
+    const { petAttributes, setAttributeAt } = usePetStore();
+    const [sliderValue, setSliderValue] = useState<PetAttribute[]>(petAttributes);
+    useEffect(() =>{
+        console.log(petAttributes);
+        setSliderValue(petAttributes);
+    }, [petAttributes])
     const onChangeHandler = (idx: number, value: number) => {
         setSliderValue(prev => {
             const newSliderValue = [...prev];
@@ -35,7 +34,7 @@ const PetAttributeSliderList = memo(({ defaultAttributes }: Props) => {
             listStyleType="none"
             pl={{ md: 4 }}
         >
-            {defaultAttributes.map((att, idx) => (
+            {petAttributes.map((att, idx) => (
                 <GridItem as="li" key={idx} minWidth={{ base: "150px", md: "250px" }}>
                     <VStack alignItems="start" gap={0}>
                         <Text fontWeight="bold">{att.name}</Text>
@@ -48,7 +47,7 @@ const PetAttributeSliderList = memo(({ defaultAttributes }: Props) => {
                             >
                                 <Slider
                                     aria-label="pet attribute slider"
-                                    defaultValue={att.value}
+                                    defaultValue={MAX_ATTRIBUTE_VAL}
                                     min={0}
                                     max={att.value}
                                     onChange={(val) => onChangeHandler(idx, val)}
@@ -66,6 +65,6 @@ const PetAttributeSliderList = memo(({ defaultAttributes }: Props) => {
             ))}
         </Grid>
     )
-})
+}
 
 export default PetAttributeSliderList;

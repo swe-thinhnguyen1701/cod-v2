@@ -8,7 +8,6 @@ import TextEffect from "./TextEffect";
 
 const TOTAL_STARS = 3; // by default, always show 3 slots
 
-
 const getAttributeIdx = (attribute: string): number => {
     const ATTRIBUTE_DICT: Record<string, number> = {
         strength: 0,
@@ -30,7 +29,6 @@ const PetSkillInfo = () => {
     if (!selectedSkill || !petAttributes || !selectedSkill.skill.attribute || !selectedSkill.skill.scaling_values)
         return;
 
-    // console.log(petAttributes[getAttributeIdx(selectedSkill.skill.attribute)].value);
     const handleStarClick = (count: number) => {
         // If the same number is clicked again → toggle back to skeletons
         setSelectedStars((prev) => (prev === count ? 0 : count));

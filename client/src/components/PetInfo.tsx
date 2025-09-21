@@ -37,7 +37,7 @@ const PetInfo = () => {
                 <Text alignSelf="center" fontWeight="bold" fontSize={{ base: "1.3rem" }}>
                     Attribute
                 </Text>
-                <PetAttributeSliderList defaultAttributes={pet.attributes} />
+                <PetAttributeSliderList />
             </VStack>
         </VStack>
     )

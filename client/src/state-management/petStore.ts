@@ -38,12 +38,13 @@ const usePetStore = create<PetStore>((set) => ({
   setPet: (pet: PetEntity) => set({ pet }),
   initializePetAttributes: (attributes: PetAttribute[]) =>
     set((state) => {
-      if (!state.pet || state.petAttributes.length > 0) return {};
+      if (!state.pet) return {};
 
       const newAttributes = attributes.map((attr) => (attr));
       const numOfSkillSets = state.pet?.recommended_skills.filter(
         (skillList) => skillList.length === 4
       );
+
       return {
         petAttributes: newAttributes,
         numOfSkillSets: numOfSkillSets,

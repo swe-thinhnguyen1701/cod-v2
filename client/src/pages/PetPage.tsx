@@ -5,17 +5,9 @@ import Spinner from "../components/Spinner";
 import { Link } from "react-router-dom";
 import ItemCard from "../components/ItemCard";
 import type { PetBriefEntity } from "../entities/PetEntity";
-import usePetStore from "../state-management/petStore";
-import { useEffect } from "react";
 
 const PetPage = () => {
     const { data, error, loading } = useQuery(GET_ALL_PETS);
-    // const { resetArtifactRank } = useArtifactStore();
-    const { reset } = usePetStore();
-
-    useEffect(() => {
-        reset();
-    }, [data, reset]);
 
     if (loading) {
         return (

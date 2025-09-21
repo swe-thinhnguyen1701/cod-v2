@@ -18,11 +18,11 @@ const PetDetailPage = () => {
 
     useEffect(() => {
         if (data) {
-            const pet: PetEntity = data.getPetDetailByName
+            const pet: PetEntity = data.getPetDetailByName;
             setPet(pet);
             initializePetAttributes(pet.attributes);
         }
-    }, [data, setPet, initializePetAttributes])
+    }, [data, petName, setPet, initializePetAttributes]);
 
     if (loading)
         return <Spinner />

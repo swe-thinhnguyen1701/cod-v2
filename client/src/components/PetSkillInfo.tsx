@@ -19,16 +19,18 @@ const getAttributeIdx = (attribute: string): number => {
     }
     const key = attribute.toLowerCase();
 
+    
     return ATTRIBUTE_DICT[key];
 }
 
 const PetSkillInfo = () => {
     const { selectedSkill, petAttributes } = usePetStore();
     const [selectedStars, setSelectedStars] = useState(0); // 0 → all skeletons
-
+    
     if (!selectedSkill || !petAttributes || !selectedSkill.skill.attribute || !selectedSkill.skill.scaling_values)
         return;
-
+    
+    // console.log(selectedSkill.skill.scaling_values?.length);
     const handleStarClick = (count: number) => {
         // If the same number is clicked again → toggle back to skeletons
         setSelectedStars((prev) => (prev === count ? 0 : count));
@@ -70,10 +72,14 @@ const PetSkillInfo = () => {
                 <VStack alignItems="start">
                     <Text fontWeight="bold">{selectedSkill.skill.name}</Text>
                     <Text>{selectedSkill.skill.is_rage ? "Rage Skill" : "Passive"}</Text>
-                    <TextEffect
-                        text={selectedSkill.skill.description[selectedStars]}
-                        scalingValue={petAttributes[getAttributeIdx(selectedSkill.skill.attribute)].value * selectedSkill.skill.scaling_values[0][selectedStars]}
-                    />
+                    {
+                        selectedSkill.skill.scaling_values.length > 0
+                            ? <TextEffect
+                                text={selectedSkill.skill.description[selectedStars]}
+                                scalingValue={petAttributes[getAttributeIdx(selectedSkill.skill.attribute)].value * selectedSkill.skill.scaling_values[0][selectedStars]}
+                            />
+                            : <TextEffect text={selectedSkill.skill.description[selectedStars]} />
+                    }
                 </VStack>
             </HStack>
         </ScaleFade>

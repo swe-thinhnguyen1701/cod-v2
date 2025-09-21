@@ -25,7 +25,7 @@ const seedPets = async () => {
                     for(let skillName of skillList) {
                         const skill = await PetSkill.findOne({ name: skillName });
                         if (!skill)
-                            throw new Error(`Skill not found for pet: ${pet.name}`);
+                            throw new Error(`Cannot not found ${skillName}`);
                         skillIdList.push(skill._id);
                     }
                     recommended_skills.push(skillIdList);

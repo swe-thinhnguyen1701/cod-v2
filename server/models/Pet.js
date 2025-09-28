@@ -1,4 +1,5 @@
-const { Schema, model } = require("mongoose");
+// const { Schema, model } = require("mongoose");
+import {model, Schema} from "mongoose";
 
 const petSchema = new Schema({
     name: {
@@ -46,4 +47,5 @@ const petSchema = new Schema({
 
 const Pet = model("Pet", petSchema);
 
-module.exports = Pet;
+// module.exports = Pet;
+export default Pet;

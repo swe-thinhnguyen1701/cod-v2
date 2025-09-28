@@ -1,4 +1,5 @@
-const { Schema, model } = require("mongoose");
+// const { Schema, model } = require("mongoose");
+import {model, Schema} from "mongoose";
 
 const options = { discriminatorKey: "skillType", collection: "skills" };
 
@@ -42,4 +43,5 @@ const ArtifactSkill = Skill.discriminator("ArtifactSkill", artifactSkillSchema);
 const HeroSkill = Skill.discriminator("HeroSkill", heroSkillSchema);
 const PetSkill = Skill.discriminator("PetSkill", petSkillSchema);
 
-module.exports = { Skill, ArtifactSkill, HeroSkill, PetSkill };
+// module.exports = { Skill, ArtifactSkill, HeroSkill, PetSkill };
+export { Skill, ArtifactSkill, HeroSkill, PetSkill };

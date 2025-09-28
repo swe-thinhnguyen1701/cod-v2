@@ -1,4 +1,5 @@
-const { model, Schema } = require("mongoose");
+// const { model, Schema } = require("mongoose");
+import {model, Schema} from "mongoose";
 
 const statSchema = new Schema({
     name: {
@@ -47,4 +48,5 @@ const artifactSchema = new Schema({
 });
 
 const Artifact = model("Artifact", artifactSchema);
-module.exports = Artifact;
+// module.exports = Artifact;
+export default Artifact;

@@ -1,5 +1,5 @@
-const { Schema, model } = require("mongoose");
-
+// const { Schema, model } = require("mongoose");
+import {model, Schema} from "mongoose";
 /**
  * Rarirty:
  * 1 - Legendary
@@ -90,4 +90,5 @@ const heroSchema = new Schema({
 
 const Hero = model("Hero", heroSchema);
 
-module.exports = Hero;
+// module.exports = Hero;
+export default Hero;

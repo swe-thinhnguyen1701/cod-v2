@@ -1,4 +1,5 @@
-const { Hero, Artifact, Pet } = require('../models');
+// const { Hero, Artifact, Pet } = require('../models');
+import {Hero, Artifact, Pet} from '../models/index.js';
 
 const resolvers = {
     Query: {
@@ -53,4 +54,4 @@ const resolvers = {
     }
 }
 
-module.exports = resolvers;
+export default resolvers;

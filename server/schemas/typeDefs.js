@@ -1,4 +1,13 @@
 const typeDefs = `
+    type User {
+        _id: ID!
+        username: String!
+        email: String!
+        password: String!
+        isAdmin: Boolean
+        createdAt: String
+    }
+
     type Role {
         name: String,
         description: String
@@ -112,12 +121,23 @@ const typeDefs = `
     }
 
     type Query {
+        me: User
         getAllHeroes: [HeroBrief]
         getAllArtifacts: [ArtifactBrief]
         getAllPets: [PetBrief]
         getHeroDetailByName(heroName: String!): HeroDetails
         getArtifactDetailByName(artifactName: String!): ArtifactDetais
         getPetDetailByName(petName: String!): PetDetails
+    }
+
+    type Mutation {
+        login(username: String!, password: String!): Auth
+        addUser(username: String!, email: String!, password: String!): Auth
+    }
+
+    type Auth {
+        token: ID!
+        user: User
     }
 `
 

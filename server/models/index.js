@@ -10,5 +10,6 @@ import Faction from "./Faction.js";
 import Role from "./Role.js";
 import Artifact from "./Artifact.js";
 import Pet from "./Pet.js";
+import User from "./User.js";
 
-export { Hero, Skill, Faction, Role, Artifact, Pet, ArtifactSkill, HeroSkill, PetSkill };
+export { Hero, Skill, Faction, Role, Artifact, Pet, ArtifactSkill, HeroSkill, PetSkill, User };

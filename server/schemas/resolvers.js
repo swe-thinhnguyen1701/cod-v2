@@ -1,5 +1,6 @@
 // const { Hero, Artifact, Pet } = require('../models');
-import {Hero, Artifact, Pet} from '../models/index.js';
+import { Hero, Artifact, Pet, User } from '../models/index.js';
+import { signToken, AuthenticationError } from "../utils/auth.js";
 
 const resolvers = {
     Query: {
@@ -50,6 +51,42 @@ const resolvers = {
                 throw new Error('Pet not found');
             }
             return pet;
+        }
+    },
+
+    Mutation: {
+        addUser: async (_parent, { username, email, password }) => {
+            try {
+                let user = await User.findOne({ email });
+                if (user)
+                    throw new Error("User already exists");
+                
+                user = await User.create({ username, email, password });
+                const token = signToken(user);
+                console.log(`New user created: ${user}`);
+                return { token, user };
+            }
+            catch (error) {
+                console.log("Something went wrong during user creation: ", error);
+                throw new Error("Failed to create user");
+            }
+        },
+        login: async (_parent, { username, password }) => {
+            try {
+                const user = await User.findOne({ username });
+                if (!user)
+                    throw AuthenticationError
+
+                const isPasswordCorrect = await user.isCorrectPassword(password);
+                if (!isPasswordCorrect)
+                    throw AuthenticationError
+
+                const token = signToken(user);
+                return { token, user };
+            } catch (error) {
+                console.log("Something went wrong during login: ", error);
+                throw AuthenticationError
+            }
         }
     }
 }

@@ -19,8 +19,12 @@
   "type": "module",
   "dependencies": {
     "@apollo/server": "^4.12.2",
+    "@types/jsonwebtoken": "^9.0.10",
     "dotenv": "^17.2.1",
     "express": "^4.21.2",
+    "graphql": "^16.11.0",
+    "inquirer": "^12.9.6",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.18.0",
     "mongoose": "^8.17.1"
   }

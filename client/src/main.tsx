@@ -14,6 +14,7 @@ import PetPage from "./pages/PetPage.tsx";
 import HeroDetailPage from "./pages/HeroDetailPage.tsx";
 import PetDetailPage from "./pages/PetDetailPage.tsx";
 import ArtifactDetailPage from "./pages/ArtifactDetailPage.tsx";
+import AuthPage from "./pages/AuthPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: "pets/:petName",
         element: <PetDetailPage />
+      },
+      {
+        path: "/auth",
+        element: <AuthPage />
       }
     ],
   },

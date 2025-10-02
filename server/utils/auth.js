@@ -6,8 +6,6 @@ dotenv.config();
 const secretKey = process.env.AUTH_SECRET_KEY;
 const expiration = "2h";
 
-
-
 const AuthenticationError = new GraphQLError("Fail to authenticate user", {
     extensions: { code: "UNAUTHENTICATED" },
 });

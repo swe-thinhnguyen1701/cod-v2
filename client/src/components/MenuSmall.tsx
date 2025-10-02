@@ -19,11 +19,13 @@ import { FiMenu, FiX } from "react-icons/fi";
 import MENU from "../config/nav-links";
 import codLogo from "../assets/CoD-logo.png"
 import ColorModeSwitch from "./ColorModeSwitch";
+import { useAuthStore } from "../state-management/authStore";
 
 const MenuSmall = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { colorMode } = useColorMode();
     const btnRef = useRef<HTMLDivElement | null>(null);
+    const { isLoggedIn } = useAuthStore();
 
     const [isLargeScreen] = useMediaQuery("(min-width: 62em)");
 
@@ -77,12 +79,40 @@ const MenuSmall = () => {
                                     fontSize="18px"
                                 >
                                     <Link to={item.path} onClick={onClose}>
-                                        <Text width="100%" textTransform="uppercase" fontWeight="bold" padding={4}>
+                                        <Text
+                                            width="100%"
+                                            textTransform="uppercase"
+                                            fontWeight="bold"
+                                            padding={4}
+                                        >
                                             {item.name}
                                         </Text>
                                     </Link>
                                 </ListItem>
                             ))}
+                            <ListItem className="menu-item"
+                                fontWeight="bold"
+                                fontSize="18px"
+                                padding={4}
+                            >
+                                {isLoggedIn ? (
+                                    <Link to="/auth" onClick={onClose}>
+                                        <Text
+                                            width="100%"
+                                            textTransform="uppercase"
+                                            fontWeight="bold"
+                                        >
+                                            Account
+                                        </Text>
+                                    </Link>
+                                ) : (
+                                    <Link to="/auth" onClick={onClose}>
+                                        <Text width="100%" textTransform="uppercase" fontWeight="bold">
+                                            login
+                                        </Text>
+                                    </Link>
+                                )}
+                            </ListItem>
                             <ListItem pl={4} mt={4} width="50px">
                                 <ColorModeSwitch />
                             </ListItem>

@@ -9,13 +9,9 @@ class AuthService {
     isTokenExpired(token: string) {
         try {
             const decoded: any = jwtDecode(token);
-            if (decoded.exp < Date.now() / 1000) {
-                return true;
-            } else {
-                return false;
-            }
+            return decoded.exp < Date.now() / 1000;
         } catch (err) {
-            return false;
+            return true;
         }
     }
 
@@ -23,14 +19,14 @@ class AuthService {
         return localStorage.getItem('id_token');
     }
 
-    login(token: string) {
+    saveToken(token: string) {
         localStorage.setItem('id_token', token);
         window.location.assign('/');
     }
 
-    logout() {
+    clearToken() {
         localStorage.removeItem('id_token');
-        window.location.assign('/');
+        // window.location.assign('/');
     }
 }
 

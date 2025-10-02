@@ -15,12 +15,13 @@ import {
     VStack,
 } from "@chakra-ui/react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import Auth from "../utils/auth";
+import { useAuthStore } from "../state-management/authStore";
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     const [isEmpty, setIsEmpty] = useState<[boolean, boolean]>([false, false]);
+    const {login: setAuth} = useAuthStore();
     const handleTogglePassword = () => setShowPassword(!showPassword);
 
     const usernameRef = useRef<HTMLInputElement>(null);
@@ -82,7 +83,7 @@ const Login = () => {
                 password: passwordRef.current.value,
             },
         });
-        Auth.login(data.login.token);
+        setAuth(data.login.token);
     };
 
     const usernameOnChange = () => {

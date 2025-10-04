@@ -20,6 +20,7 @@ import MENU from "../config/nav-links";
 import codLogo from "../assets/CoD-logo.png"
 import ColorModeSwitch from "./ColorModeSwitch";
 import { useAuthStore } from "../state-management/authStore";
+import UserAccordion from "./UserAccordion";
 
 const MenuSmall = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -31,6 +32,8 @@ const MenuSmall = () => {
 
     if (isLargeScreen)
         return null;
+
+    // console.log(user);
 
 
     return (
@@ -96,15 +99,7 @@ const MenuSmall = () => {
                                 padding={4}
                             >
                                 {isLoggedIn ? (
-                                    <Link to="/auth" onClick={onClose}>
-                                        <Text
-                                            width="100%"
-                                            textTransform="uppercase"
-                                            fontWeight="bold"
-                                        >
-                                            Account
-                                        </Text>
-                                    </Link>
+                                    <UserAccordion />
                                 ) : (
                                     <Link to="/auth" onClick={onClose}>
                                         <Text width="100%" textTransform="uppercase" fontWeight="bold">

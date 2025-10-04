@@ -10,7 +10,7 @@ const AuthenticationError = new GraphQLError("Fail to authenticate user", {
     extensions: { code: "UNAUTHENTICATED" },
 });
 
-function authMiddleware({ req }) {
+function authMiddleware({req}) {
     if (!secretKey) {
         throw new Error("Missing AUTH_SECRET_KEY in environment variables");
     }
@@ -18,15 +18,16 @@ function authMiddleware({ req }) {
 
     if (!token) return req;
 
-    console.log("Authorization Header: ", req.headers.authorization);
+    // console.log("Authorization Header: ", req.headers.authorization);
 
     if (req.headers.authorization) {
         token = token.split(" ").pop()?.trim();
     }
 
     try {
-        const data = jwt.verify(token, secretKey, {maxAge: expiration});
-        if (data) req.user = data;
+        const { data } = jwt.verify(token, secretKey, { maxAge: expiration });
+        // console.log("Token data: ", data);
+        req.user = data;
     } catch (err) {
         console.log("Invalid token", err);
     }

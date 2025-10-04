@@ -3,9 +3,17 @@ const typeDefs = `
         _id: ID!
         username: String!
         email: String!
-        password: String!
+        name: String!
         isAdmin: Boolean
-        createdAt: String
+        image: String
+    }
+
+    input NewUserInput {
+        username: String!
+        email: String!
+        name: String!
+        password: String!   
+        image: String
     }
 
     type Role {
@@ -132,7 +140,7 @@ const typeDefs = `
 
     type Mutation {
         login(username: String!, password: String!): Auth
-        addUser(username: String!, email: String!, password: String!): Auth
+        addUser(newUser: NewUserInput!): Auth
     }
 
     type Auth {

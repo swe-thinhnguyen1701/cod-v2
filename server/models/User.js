@@ -18,6 +18,15 @@ const userSchema = new Schema({
         unique: true,
         trim: true
     },
+    name: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    image: {
+        type: String,
+        default: ""
+    },
     isAdmin: {
         type: Boolean,
         default: false

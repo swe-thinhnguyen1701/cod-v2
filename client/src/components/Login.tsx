@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { LOGIN } from "../graphql/mutations";
 import {
@@ -22,6 +23,7 @@ const Login = () => {
     const [errorMessage, setErrorMessage] = useState("");
     const [isEmpty, setIsEmpty] = useState<[boolean, boolean]>([false, false]);
     const {login: setAuth} = useAuthStore();
+    const navigate = useNavigate();
     const handleTogglePassword = () => setShowPassword(!showPassword);
 
     const usernameRef = useRef<HTMLInputElement>(null);
@@ -84,6 +86,8 @@ const Login = () => {
             },
         });
         setAuth(data.login.token);
+
+        navigate("/");
     };
 
     const usernameOnChange = () => {

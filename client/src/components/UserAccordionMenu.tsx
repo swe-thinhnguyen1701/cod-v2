@@ -2,7 +2,7 @@ import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPane
 import { useAuthStore } from "../state-management/authStore";
 import { Link } from "react-router-dom";
 
-const UserAccordion = () => {
+const UserAccordionMenu = () => {
     const { user, logout } = useAuthStore();
 
     if (!user) return null;
@@ -41,4 +41,4 @@ const UserAccordion = () => {
     )
 }
 
-export default UserAccordion;
+export default UserAccordionMenu;

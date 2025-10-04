@@ -1,8 +1,10 @@
-const legendaryStats = require("../database/artifact-stats/legendary.json");
-const epicStats = require("../database/artifact-stats/epic.json");
-const eliteStats = require("../database/artifact-stats/elite.json");
-const advancedStats = require("../database/artifact-stats/advanced.json");
-const ultimateStats = require("../database/artifact-stats/ultimate.json");
+import readJSON from "./readJSON.js";
+
+const legendaryStats = readJSON("artifact-stats/legendary.json");
+const epicStats = readJSON("artifact-stats/epic.json");
+const eliteStats = readJSON("artifact-stats/elite.json");
+const advancedStats = readJSON("artifact-stats/advanced.json");
+const ultimateStats = readJSON("artifact-stats/ultimate.json");
 
 interface Stat {
   template: string;
@@ -67,4 +69,4 @@ const expandStats = (stats: [Stat], rarity: Number) => {
   return res;
 };
 
-module.exports = expandStats;
+export default expandStats;

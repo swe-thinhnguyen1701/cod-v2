@@ -1,6 +1,8 @@
-const {Role} = require("../models");
-const db = require("../config/db-connection");
-const roles = require("../database/roles.json")
+import db from "../config/db-connection.js";
+import { Role } from "../models/index.js";
+import readJSON from "../utils/readJSON.js";
+
+const roles = readJSON("../database/roles.json");
 
 const seedRoles = async () => {
     db.once("open", async () => {

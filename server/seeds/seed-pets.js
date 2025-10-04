@@ -1,6 +1,8 @@
-const { Pet, Role, PetSkill } = require("../models");
-const db = require("../config/db-connection");
-const pets = require("../database/pets.json");
+import db from "../config/db-connection.js";
+import { Pet, Role, PetSkill } from "../models/index.js";
+import readJSON from "../utils/readJSON.js";
+
+const pets = readJSON("pets.json");
 
 const PET_IMG_URL = "https://d3bhl6gkk81cq1.cloudfront.net/pets/";
 

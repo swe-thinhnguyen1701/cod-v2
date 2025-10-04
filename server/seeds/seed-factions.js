@@ -1,6 +1,8 @@
-const { Faction } = require('../models');
-const db = require('../config/db-connection');
-const factions = require('../database/factions.json');
+import db from "../config/db-connection.js";
+import { Faction } from "../models/index.js";
+import readJSON from "../utils/readJSON.js";
+
+const factions = readJSON("factions.json");
 
 const seedFactions = async () => {
     db.once('open', async () => {

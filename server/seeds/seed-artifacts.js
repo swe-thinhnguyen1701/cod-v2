@@ -1,7 +1,9 @@
-const { Artifact, Skill, Role } = require("../models");
-const db = require("../config/db-connection");
-const artifacts = require("../database/artifacts.json");
-const expandStats = require("../utils/expandStats.ts");
+import db from "../config/db-connection.js";
+import { Artifact, Skill, Role } from "../models/index.js";
+import readJSON from "../utils/readJSON.js";
+import expandStats from "../utils/expandStats.js";
+
+const artifacts = readJSON("artifacts.json");
 
 const ARTIFACT_IMAGE_URL = "https://d3bhl6gkk81cq1.cloudfront.net/artifacts/"
 
@@ -27,11 +29,6 @@ const seedArtifacts = async () => {
                 artifact.stats = expandStats(artifact.stats, artifact.rarity);
                 artifact.image = `${ARTIFACT_IMAGE_URL}${artifact.name}.webp`;
 
-                // debug log
-                // if (artifact.name === "Spiritbone Torc") {
-                //     console.log(`add skill: ${artifactSkill}`);
-                //     console.log(artifact);
-                // }
                 await Artifact.create(artifact);
             }
         } catch (error) {

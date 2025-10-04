@@ -1,6 +1,8 @@
-const { Hero, Skill, Faction, Role } = require("../models");
-const db = require("../config/db-connection");
-const heroes = require("../database/heroes.json");
+import db from "../config/db-connection.js";
+import { Hero, Skill, Faction, Role } from "../models/index.js";
+import readJSON from "../utils/readJSON.js";
+
+const heroes = readJSON("heroes.json");
 
 const FACTION = ["Springwardens", "League of Order", "Wilderburg"];
 const HERO_IMG_URL = "https://d3bhl6gkk81cq1.cloudfront.net/hero-full/"

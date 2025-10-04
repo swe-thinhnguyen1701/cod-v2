@@ -1,8 +1,10 @@
-const db = require("../config/db-connection");
-const { Skill, HeroSkill, ArtifactSkill, PetSkill } = require("../models");
-const heroSkills = require("../database/skill-hero.json");
-const artifactSkills = require("../database/skill-artifact.json");
-const petSkills = require("../database/skill-pet.json");
+import db from "../config/db-connection.js";
+import { Skill, HeroSkill, ArtifactSkill, PetSkill } from "../models/index.js";
+import readJSON from "../utils/readJSON.js";
+
+const heroSkills = readJSON("skill-hero.json");
+const artifactSkills = readJSON("skill-artifact.json");
+const petSkills = readJSON("skill-pet.json");
 
 const seedSkills = async () => {
     db.once("open", async () => {

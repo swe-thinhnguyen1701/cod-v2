@@ -1,7 +1,3 @@
-// const express = require("express");
-// const {ApolloServer} = require("@apollo/server");
-// const {expressMiddleware} = require("@apollo/server/express4");
-// const {typeDefs, resolvers} = require("./schemas");
 import express from "express";
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
@@ -12,9 +8,6 @@ import db from "./config/db-connection.js";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 
-
-// const path = require("path");
-// const db = require("./config/db-connection");
 
 const server = new ApolloServer({
     typeDefs,
@@ -31,7 +24,7 @@ const startApolloServer = async () => {
     await server.start();
 
     app.use(express.json());
-    app.use(express.urlencoded({ extended: true }));
+    app.use(express.urlencoded({ extended: false }));
     
     app.use("/graphql", expressMiddleware(server, {
         context: authMiddleware

@@ -1,19 +1,15 @@
-import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from "@apollo/client"
+import { ApolloProvider } from "@apollo/client";
+import { client } from "./apollo/client";
 import { Box, VStack } from "@chakra-ui/react";
-import { Outlet } from "react-router-dom"
+import { Outlet } from "react-router-dom";
 import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
-
-const httpLink = createHttpLink({
-  uri: "/graphql",
-});
-
-const client = new ApolloClient({
-  link: httpLink,
-  cache: new InMemoryCache(),
-});
+import { useAuthStore } from "./state-management/authStore";
+import { useEffect } from "react";
 
 function App() {
+  const checkAuth = useAuthStore((state) => state.checkAuth);
+  useEffect(() => { checkAuth() }, [checkAuth]);
 
   return (
     <ApolloProvider client={client}>

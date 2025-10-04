@@ -141,3 +141,15 @@ export const GET_PET_DETAIL_BY_NAME = gql`
     }
   }
 `;
+
+export const GET_ME = gql`
+  query me {
+    me {
+      name
+      username
+      email
+      isAdmin
+      image
+    }
+  }
+`

@@ -4,6 +4,14 @@ import { signToken, AuthenticationError } from "../utils/auth.js";
 
 const resolvers = {
     Query: {
+        me: async (_parent, _args, context) => {
+            console.log(`Context user: ${JSON.stringify(context.user)}`);
+            if (context.user) {
+                const userData = await User.findOne({ _id: context.user._id });
+                return userData;
+            }
+            throw AuthenticationError;
+        },
         getAllHeroes: async () => {
             const heroes = await Hero.find().populate("roles").sort({ name: 1 });
             if (!heroes || heroes.length === 0) {
@@ -55,13 +63,13 @@ const resolvers = {
     },
 
     Mutation: {
-        addUser: async (_parent, { username, email, password }) => {
+        addUser: async (_parent, { newUser }) => {
             try {
-                let user = await User.findOne({ email });
+                let user = await User.findOne({ email: newUser.email });
                 if (user)
                     throw new Error("User already exists");
                 
-                user = await User.create({ username, email, password });
+                user = await User.create(newUser);
                 const token = signToken(user);
                 console.log(`New user created: ${user}`);
                 return { token, user };

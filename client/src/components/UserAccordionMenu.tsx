@@ -10,32 +10,67 @@ const UserAccordionMenu = () => {
     return (
         <Accordion allowToggle >
             <AccordionItem border="none">
-                <AccordionButton padding={0} display="flex" justifyContent="space-between">
+                <AccordionButton display="flex" justifyContent="space-between">
                     <HStack>
                         <Avatar size="sm" name={user.name} src={user.image ?? ""} />
-                        <Text as="span">{user.name}</Text>
+                        <Text as="span" fontWeight="bold" textTransform="capitalize">{user.name}</Text>
                     </HStack>
                     <AccordionIcon />
                 </AccordionButton>
                 <AccordionPanel>
-                        <UnorderedList>
-                            <ListItem>
-                                <Link to="/profile">
+                    <UnorderedList listStyleType="none" margin={0} fontWeight="bold" pl={4}>
+                        <ListItem
+                            className="menu-item"
+                            fontWeight="bold"
+                            fontSize="14px"
+                        >
+                            <Link to="/profile">
+                                <Text
+                                    width="100%"
+                                    textTransform="uppercase"
+                                    fontWeight="bold"
+                                    padding={4}
+                                >
                                     Profile
+                                </Text>
+                            </Link>
+                        </ListItem>
+                        {user.isAdmin &&
+                            <ListItem
+                                className="menu-item"
+                                fontWeight="bold"
+                                fontSize="14px"
+                            >
+                                <Link to="/admin">
+                                    <Text
+                                        width="100%"
+                                        textTransform="uppercase"
+                                        fontWeight="bold"
+                                        padding={4}
+                                    >
+                                        Admin Management
+                                    </Text>
                                 </Link>
                             </ListItem>
-                            {user.isAdmin &&
-                                <ListItem>
-                                    <Link to="/admin">
-                                        Admin Management
-                                    </Link>
-                                </ListItem>
-                            }
-                            <ListItem onClick={logout}>
-                                <Text>Logout</Text>
-                            </ListItem>
-                        </UnorderedList>
-                    </AccordionPanel>
+                        }
+                        <ListItem
+                            className="menu-item"
+                            fontWeight="bold"
+                            fontSize="14px"
+                            onClick={logout}
+                            cursor="pointer"
+                        >
+                            <Text
+                                width="100%"
+                                textTransform="uppercase"
+                                fontWeight="bold"
+                                padding={4}
+                            >
+                                Logout
+                            </Text>
+                        </ListItem>
+                    </UnorderedList>
+                </AccordionPanel>
             </AccordionItem>
         </Accordion>
     )

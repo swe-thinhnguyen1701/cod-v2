@@ -93,21 +93,23 @@ const MenuSmall = () => {
                                     </Link>
                                 </ListItem>
                             ))}
-                            <ListItem className="menu-item"
-                                fontWeight="bold"
-                                fontSize="18px"
-                                padding={4}
-                            >
-                                {isLoggedIn ? (
+                            {isLoggedIn ? (
+                                <ListItem>
                                     <UserAccordionMenu />
-                                ) : (
+                                </ListItem>
+                            ) : (
+                                <ListItem className="menu-item"
+                                    fontWeight="bold"
+                                    fontSize="18px"
+                                    padding={4}
+                                >
                                     <Link to="/auth" onClick={onClose}>
                                         <Text width="100%" textTransform="uppercase" fontWeight="bold">
                                             login
                                         </Text>
                                     </Link>
-                                )}
-                            </ListItem>
+                                </ListItem>
+                            )}
                             <ListItem pl={4} mt={4} width="50px">
                                 <ColorModeSwitch />
                             </ListItem>

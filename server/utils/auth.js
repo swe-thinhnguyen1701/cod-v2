@@ -14,6 +14,14 @@ const AuthenticationError = new GraphQLError("Fail to authenticate user", {
     extensions: { code: "UNAUTHENTICATED" },
 });
 
+function requireAdmin(user) {
+    if(!user || !user.isAdmin) {
+        throw new GraphQLError("Access denined: Admin only", {
+            extensions: { code: "FORBIDDEN" }
+        });
+    }
+}
+
 function authMiddleware({req}) {
     if (!secretKey) {
         throw new Error("Missing AUTH_SECRET_KEY in environment variables");
@@ -22,15 +30,12 @@ function authMiddleware({req}) {
 
     if (!token) return req;
 
-    // console.log("Authorization Header: ", req.headers.authorization);
-
     if (req.headers.authorization) {
         token = token.split(" ").pop()?.trim();
     }
 
     try {
         const { data } = jwt.verify(token, secretKey, { maxAge: expiration });
-        // console.log("Token data: ", data);
         req.user = data;
     } catch (err) {
         console.log("Invalid token", err);
@@ -39,12 +44,12 @@ function authMiddleware({req}) {
     return req;
 }
 
-function signToken({ _id, username, email }) {
+function signToken({ _id, username, email, isAdmin }) {
     if (!secretKey) {
         throw new Error("Missing AUTH_SECRET_KEY in environment variables");
     }
-    const payload = { _id, username, email };
+    const payload = { _id, username, email, isAdmin };
     return jwt.sign({ data: payload }, secretKey, { expiresIn: expiration });
 }
 
-export { authMiddleware, signToken, AuthenticationError };
+export { authMiddleware, signToken, requireAdmin, AuthenticationError };

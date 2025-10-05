@@ -1,5 +1,16 @@
 import { jwtDecode } from "jwt-decode";
 
+interface DecodeToken {
+    data: {
+        _id: string,
+        username: string,
+        email: string,
+        isAdmin: boolean
+    },
+    iat: number,
+    exp: number
+}
+
 class AuthService {
     loggedIn() {
         const token = this.getToken();
@@ -8,9 +19,9 @@ class AuthService {
 
     isTokenExpired(token: string) {
         try {
-            const decoded: any = jwtDecode(token);
+            const decoded: DecodeToken = jwtDecode(token);
             return decoded.exp < Date.now() / 1000;
-        } catch (err) {
+        } catch {
             return true;
         }
     }
@@ -21,12 +32,10 @@ class AuthService {
 
     saveToken(token: string) {
         localStorage.setItem("id_token", token);
-        // window.location.assign("/")
     }
 
     clearToken() {
         localStorage.removeItem("id_token");
-        // window.location.assign("/");
     }
 }
 

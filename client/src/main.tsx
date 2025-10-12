@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import {ChakraProvider, ColorModeScript} from "@chakra-ui/react";
+import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import theme from "./theme.ts";
 import App from "./App.tsx";
 import "./index.css";
@@ -15,6 +15,7 @@ import HeroDetailPage from "./pages/HeroDetailPage.tsx";
 import PetDetailPage from "./pages/PetDetailPage.tsx";
 import ArtifactDetailPage from "./pages/ArtifactDetailPage.tsx";
 import AuthPage from "./pages/AuthPage.tsx";
+import AdminPage from "./pages/AdminPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: "/auth",
         element: <AuthPage />
+      },
+      {
+        path: "/admin",
+        element: <AdminPage />
       }
     ],
   },

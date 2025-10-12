@@ -9,7 +9,6 @@ const NavBar = () => {
 
     return (
         <Box
-            // backgroundColor="rgba(250, 250, 252, 0.8)"
             backgroundColor={colorMode === "dark" ? "rgba(68, 76, 77, 0.471)" : "rgba(250, 250, 252, 0.8)"}
             className="nav-bar"
             display="flex"
@@ -21,7 +20,6 @@ const NavBar = () => {
             borderBottom="solid 1px"
             borderColor={colorMode === "dark" ? "gray.700" : "lightgray"}
         >
-            {/* Navigation items will go here */}
             <HStack
                 justifyContent="space-between"
                 width="100vw" maxWidth="1440px">

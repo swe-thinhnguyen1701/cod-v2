@@ -31,11 +31,9 @@ const Login = () => {
 
     const [login, { loading, error }] = useMutation(LOGIN);
 
-    // Handle Apollo error state
     useEffect(() => {
         if (!error) return;
 
-        // GraphQL errors
         const gqlError = error.graphQLErrors?.[0];
         const code = gqlError?.extensions?.code;
 
@@ -48,7 +46,6 @@ const Login = () => {
             return;
         }
 
-        // Network errors
         if (error.networkError) {
             console.log(error.networkError);
             if (error.networkError.message.includes("ERR_INTERNET_DISCONNECTED")) {
@@ -59,7 +56,6 @@ const Login = () => {
             return;
         }
 
-        // Default fallback
         setErrorMessage("An unexpected error occurred. Please try again later.");
     }, [error]);
 

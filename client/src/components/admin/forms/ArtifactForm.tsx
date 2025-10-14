@@ -55,7 +55,7 @@ type FormData = {
         name: string;
         cooldown: string;
         rageCost: string;
-        description: string;
+        description: { value: string }[];
         skillPreviews: { value: string }[];
         additionalEffect: string;
         exemplarEffect: string;
@@ -82,13 +82,15 @@ const ArtifactForm = () => {
                 name: "",
                 cooldown: "",
                 rageCost: "",
-                description: "",
+                description: [{ value: "" }, { value: "" }],
                 skillPreviews: [],
                 additionalEffect: "",
                 exemplarEffect: "",
             },
         },
     });
+
+
 
     const { fields: skillPreviews, append: appendSkillPreview, remove: removeSkillPreview } = useFieldArray({
         control,
@@ -98,7 +100,13 @@ const ArtifactForm = () => {
     const { fields: stats, append: appendStat, remove: removeStat } = useFieldArray({
         control,
         name: "stats"
-    })
+    });
+
+    const isExemplarOnChange = (value: string, fieldOnChange: (value: boolean) => void) => {
+        const isTrue = value === "true";
+        fieldOnChange(isTrue);
+        setShowExemplarTextArea(isTrue);
+    }
 
     const onSubmit = (data: FormData) => {
         console.log("Form submitted:", data);
@@ -174,7 +182,7 @@ const ArtifactForm = () => {
                                 name="isExemplar"
                                 render={({ field }) => (
                                     <RadioGroup
-                                        onChange={(val) => { field.onChange(val === "true"); setShowExemplarTextArea(val === "true") }}
+                                        onChange={(val) => isExemplarOnChange(val, field.onChange)}
                                         value={field.value ? "true" : "false"}
                                     >
                                         <HStack gap={4}>
@@ -295,12 +303,22 @@ const ArtifactForm = () => {
                         <Input {...register("skill.rageCost")} placeholder="Rage cost" maxLength={4} />
                     </FormControl>
                 </Flex>
-                <FormControl>
+                <FormControl isInvalid={!!errors.skill?.description}>
                     <FormLabel fontWeight="bold">
-                        Description
+                        Skill Description
                     </FormLabel>
-                    <Textarea {...register("skill.description")} resize="none" placeholder="Enter skill description" />
+                    <Textarea {...register(`skill.description.${0}.value` as const, { required: "Skill Description is required" })} resize="none" placeholder="Enter skill description" />
+                    <FormErrorMessage>{errors.skill?.description?.[0]?.value?.message}</FormErrorMessage>
                 </FormControl>
+                {showExemplarTextArea &&
+                    <FormControl isInvalid={!!errors.skill?.description}>
+                        <FormLabel fontWeight="bold">
+                            Exemplar Skill Description
+                        </FormLabel>
+                        <Textarea {...register(`skill.description.${1}.value` as const, { required: "Exemplar Skill Description is required" })} resize="none" placeholder="Enter skill description" />
+                        <FormErrorMessage>{errors.skill?.description?.[1]?.value?.message}</FormErrorMessage>
+                    </FormControl>
+                }
                 <FormControl>
                     <FormLabel fontWeight="bold">
                         Skill Preview

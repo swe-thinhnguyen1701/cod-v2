@@ -12,7 +12,7 @@ const CategorySidebar = () => {
                     <Heading as="h4" fontSize="1.2rem" mb={2}>
                         {feature.title}
                     </Heading>
-                    <UnorderedList listStyleType="none" margin={0} paddingLeft={2}>
+                    <UnorderedList listStyleType="none" margin={0} paddingLeft={2} display="flex" flexDirection="column" gap={2}>
                         {feature.categories.map((category, categoryIdx) => (
                             <ListItem
                                 key={categoryIdx}

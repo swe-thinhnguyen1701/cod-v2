@@ -1,4 +1,4 @@
-import { Box, ScaleFade, Flex, useBreakpointValue, VStack } from "@chakra-ui/react";
+import { Box, ScaleFade, Flex, useBreakpointValue, VStack, Card } from "@chakra-ui/react";
 import CategoryMenu from "./admin/CategoryMenu";
 import CategorySidebar from "./admin/CategorySidebar";
 import useCategoryStore from "../state-management/categoryStore";
@@ -11,7 +11,7 @@ const AdminDashboard = () => {
     const { selectedCategory } = useCategoryStore();
 
     return (
-        <Flex position="relative" gap={4}>
+        <Flex position="relative" gap={8}>
             {isMobile
                 ? <Box
                     position="fixed"
@@ -20,11 +20,11 @@ const AdminDashboard = () => {
                     zIndex={2}>
                     <CategoryMenu />
                 </Box>
-                : <Box>
+                : <Card padding={4} width="200px" height="200px">
                     <CategorySidebar />
-                </Box>
+                </Card>
             }
-            <VStack>
+            <VStack paddingLeft={{base: 0, lg: 10}}>
                 <ScaleFade in={!!selectedCategory}
                     key={selectedCategory}
                     initialScale={0.9}

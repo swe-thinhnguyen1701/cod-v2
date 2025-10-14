@@ -1,4 +1,5 @@
 import {
+    Box,
     Button,
     Flex,
     FormControl,
@@ -20,6 +21,7 @@ import SectionHeading from "../../SectionHeading";
 import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { useState } from "react";
 import { IoTrashBin } from "react-icons/io5";
+import FormNote from "./FormNote";
 
 const RARITY_LIST = ["legendary", "epic", "rare", "common"];
 const ROLES = [
@@ -264,9 +266,13 @@ const ArtifactForm = () => {
                 </FormControl>
             </VStack>
 
+
             {/* Artifact Skill Information Section */}
             <VStack width="100%" px={4} gap={4}>
                 <SectionHeading title="Artifact Skill" />
+                <Box alignSelf="start" mb={4}>
+                    <FormNote />
+                </Box>
                 <Flex flexDirection={{ base: "column", md: "row" }} width="100%" gap={4}>
                     <FormControl isInvalid={!!errors.skill?.name}>
                         <FormLabel fontWeight="bold">

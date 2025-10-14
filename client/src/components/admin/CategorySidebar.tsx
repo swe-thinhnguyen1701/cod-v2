@@ -12,7 +12,7 @@ const CategorySidebar = () => {
                     <Heading as="h4" fontSize="1.2rem" mb={2}>
                         {feature.title}
                     </Heading>
-                    <UnorderedList listStyleType="none" margin={0} paddingLeft={6}>
+                    <UnorderedList listStyleType="none" margin={0} paddingLeft={2}>
                         {feature.categories.map((category, categoryIdx) => (
                             <ListItem
                                 key={categoryIdx}
@@ -21,8 +21,9 @@ const CategorySidebar = () => {
                                 value={category}
                                 backgroundColor={selectedCategory === category ? "#c3ab76" : "unset"}
                                 color={selectedCategory === category ? "white" : "inherit"}
-                                _hover={{ backgroundColor: "#c3ab76", color: "white" }}
-                                transitionProperty="background-color, color"
+                                fontWeight={selectedCategory === category ? "bold" : "normal"}
+                                _hover={{ backgroundColor: "#c3ab76", color: "white", fontWeight: "bold" }}
+                                transitionProperty="background-color, color, font-weight"
                                 transitionDuration="0.3s"
                                 transitionTimingFunction="ease-in-out"
                                 padding={2}

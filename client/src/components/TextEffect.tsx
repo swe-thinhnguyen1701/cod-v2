@@ -72,6 +72,7 @@ const textModifier = (text: string, scalingValue: number) => {
           );
         }
         if (effect === "scaling_value_1") {
+          effect = null;
           return (
             <Text as="span" key={idx}>
               <Text as="span" color="green.500" fontWeight="bold">

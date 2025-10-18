@@ -7,7 +7,7 @@ interface Props {
 
 const SectionHeading = ({ title, smallSize }: Props) => {
     return (
-        <Heading as="h2" size={smallSize ? "h3" : "h2"} textTransform="uppercase" mb={4} pl={2} color="#c3ab76">
+        <Heading as="h2" size={smallSize ? "h3" : "h2"} textTransform="uppercase" color="#c3ab76">
             {title}
         </Heading>
     );

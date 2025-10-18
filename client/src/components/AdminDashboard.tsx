@@ -24,8 +24,9 @@ const AdminDashboard = () => {
                     <CategorySidebar />
                 </Card>
             }
-            <VStack paddingLeft={{base: 0, lg: 10}}>
-                <ScaleFade in={!!selectedCategory}
+            <VStack paddingLeft={{ base: 0, lg: 10 }}>
+                <ScaleFade
+                    in={!!selectedCategory}
                     key={selectedCategory}
                     initialScale={0.9}
                     unmountOnExit

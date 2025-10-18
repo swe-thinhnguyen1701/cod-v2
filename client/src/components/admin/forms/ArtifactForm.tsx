@@ -28,17 +28,14 @@ const ROLES = [
     {
         title: "unit type",
         categories: ["Infantry", "Cavalry", "Archers", "Magic", "Overall", "N/A"],
-        rank: 0
     },
     {
         title: "senario",
         categories: ["PvP", "Peacekeeping", "Rally", "Garrison", "Gathering", "Engineering", "N/A"],
-        rank: 1
     },
     {
         title: "combat style",
         categories: ["Precision", "Skills", "Tank", "Mobility", "Control", "Support", "N/A"],
-        rank: 2
     }
 ];
 
@@ -55,7 +52,7 @@ type FormData = {
         name: string;
         cooldown: string;
         rageCost: string;
-        description: { value: string }[];
+        descriptions: { value: string }[];
         skillPreviews: { value: string }[];
         additionalEffect: string;
         exemplarEffect: string;
@@ -82,7 +79,7 @@ const ArtifactForm = () => {
                 name: "",
                 cooldown: "",
                 rageCost: "",
-                description: [{ value: "" }, { value: "" }],
+                descriptions: [{ value: "" }, { value: "" }],
                 skillPreviews: [],
                 additionalEffect: "",
                 exemplarEffect: "",
@@ -136,6 +133,7 @@ const ArtifactForm = () => {
                     rowGap={4}
                     width="100%"
                 >
+                    {/* Artifact name */}
                     <GridItem area="artifactName">
                         <FormControl isInvalid={!!errors.artifactName}>
                             <FormLabel fontWeight="bold" htmlFor="artifact-name">
@@ -150,6 +148,8 @@ const ArtifactForm = () => {
                             <FormErrorMessage>{errors.artifactName?.message}</FormErrorMessage>
                         </FormControl>
                     </GridItem>
+
+                    {/* Artifact rarity */}
                     <GridItem area="rarity">
                         <FormControl>
                             <FormLabel fontWeight="bold">
@@ -172,6 +172,8 @@ const ArtifactForm = () => {
                             />
                         </FormControl>
                     </GridItem>
+
+                    {/* Is exemplar artifact */}
                     <GridItem area="isExemplar">
                         <FormControl>
                             <FormLabel fontWeight="bold">
@@ -195,6 +197,8 @@ const ArtifactForm = () => {
                         </FormControl>
                     </GridItem>
                 </Grid>
+
+                {/* Artifact role */}
                 <FormControl>
                     <FormLabel fontWeight="bold">
                         Role
@@ -224,6 +228,8 @@ const ArtifactForm = () => {
                         ))}
                     </VStack>
                 </FormControl>
+
+                {/* Artifact stats */}
                 <FormControl>
                     <FormLabel fontWeight="bold">
                         Artifact Stats
@@ -274,7 +280,6 @@ const ArtifactForm = () => {
                 </FormControl>
             </VStack>
 
-
             {/* Artifact Skill Information Section */}
             <VStack width="100%" px={4} gap={4}>
                 <SectionHeading title="Artifact Skill" />
@@ -303,20 +308,20 @@ const ArtifactForm = () => {
                         <Input {...register("skill.rageCost")} placeholder="Rage cost" maxLength={4} />
                     </FormControl>
                 </Flex>
-                <FormControl isInvalid={!!errors.skill?.description}>
+                <FormControl isInvalid={!!errors.skill?.descriptions}>
                     <FormLabel fontWeight="bold">
                         Skill Description
                     </FormLabel>
-                    <Textarea {...register(`skill.description.${0}.value` as const, { required: "Skill Description is required" })} resize="none" placeholder="Enter skill description" />
-                    <FormErrorMessage>{errors.skill?.description?.[0]?.value?.message}</FormErrorMessage>
+                    <Textarea {...register(`skill.descriptions.${0}.value` as const, { required: "Skill Description is required" })} resize="none" placeholder="Enter skill description" />
+                    <FormErrorMessage>{errors.skill?.descriptions?.[0]?.value?.message}</FormErrorMessage>
                 </FormControl>
                 {showExemplarTextArea &&
-                    <FormControl isInvalid={!!errors.skill?.description}>
+                    <FormControl isInvalid={!!errors.skill?.descriptions}>
                         <FormLabel fontWeight="bold">
                             Exemplar Skill Description
                         </FormLabel>
-                        <Textarea {...register(`skill.description.${1}.value` as const, { required: "Exemplar Skill Description is required" })} resize="none" placeholder="Enter skill description" />
-                        <FormErrorMessage>{errors.skill?.description?.[1]?.value?.message}</FormErrorMessage>
+                        <Textarea {...register(`skill.descriptions.${1}.value` as const, { required: "Exemplar Skill Description is required" })} resize="none" placeholder="Enter skill description" />
+                        <FormErrorMessage>{errors.skill?.descriptions?.[1]?.value?.message}</FormErrorMessage>
                     </FormControl>
                 }
                 <FormControl>

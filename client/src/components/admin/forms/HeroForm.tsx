@@ -1,9 +1,13 @@
+import { useQuery } from "@apollo/client";
+import { GET_ALL_HEROES, GET_ALL_PETS, GET_ALL_ARTIFACTS } from "../../../graphql/queries";
 import { useForm, useFieldArray, Controller } from "react-hook-form";
 import type { Control, FieldErrorsImpl, UseFormRegister } from "react-hook-form";
-import { Box, Button, Card, CardBody, CardHeader, Flex, FormControl, FormErrorMessage, FormLabel, Grid, GridItem, HStack, Input, InputGroup, InputRightElement, Radio, RadioGroup, Text, Textarea, useToast, VStack } from "@chakra-ui/react"
+import { Box, Button, Card, CardBody, CardHeader, Divider, Flex, flexbox, FormControl, FormErrorMessage, FormLabel, Grid, GridItem, Heading, HStack, Image, Input, InputGroup, InputRightElement, ListItem, Radio, RadioGroup, Text, Textarea, UnorderedList, useToast, VStack } from "@chakra-ui/react"
+import { IoTrashBin } from "react-icons/io5";
 import SectionHeading from "../../SectionHeading";
 import FormNote from "./FormNote";
-import { IoTrashBin } from "react-icons/io5";
+import Spinner from "../../Spinner";
+import SearchBar from "./SearchBar";
 
 const RARITY_LIST = ["legendary", "epic", "rare"];
 const FACTION_LIST = ["League of Order", "Wilderburg", "Springwardens"];
@@ -22,7 +26,7 @@ const ROLE_LIST = [
     }
 ];
 
-type FormData = {
+export type FormData = {
     artifacts: { value: string }[];
     faction: string;
     heroDescription: string;
@@ -135,6 +139,10 @@ const SkillFields = ({ skillIdx, control, register, errors }: SkillFieldsProps) 
 }
 
 const HeroForm = () => {
+    const { data: heroData, loading: loadingHeroData, error: errorHeroData } = useQuery(GET_ALL_HEROES);
+    const { data: petData, loading: loadingPetData, error: errorPetData } = useQuery(GET_ALL_PETS);
+    const {data: artifactData, loading: loadingArtifactData, error: errorArtifactData} = useQuery(GET_ALL_ARTIFACTS);
+
     const toast = useToast();
     const {
         control,
@@ -162,10 +170,32 @@ const HeroForm = () => {
             title: ""
         }
     });
+
     const { fields: skills, append: appendSkill, remove: removeSkill } = useFieldArray({
         control,
         name: "skills"
     });
+
+    const { fields: partners, append: appendPartner, remove: removePartner } = useFieldArray({
+        control,
+        name: "partners"
+    });
+
+    const { fields: pets, append: appendPet, remove: removePet } = useFieldArray({
+        control,
+        name: "pets"
+    });
+
+    const {fields: artifacts, append: appendArtifact, remove: removeArtifact} = useFieldArray({
+        control,
+        name: "artifacts"
+    })
+
+    if (loadingHeroData || loadingPetData || loadingArtifactData)
+        return <Spinner />
+
+    if (errorHeroData || errorPetData || errorArtifactData)
+        return <Heading as="h1">Something went wrong</Heading>
 
     const onSubmit = (data: FormData) => {
         console.log("Form submitted:", data);
@@ -332,7 +362,7 @@ const HeroForm = () => {
                     </GridItem>
                 </Grid>
             </VStack>
-
+            <Divider />
             {/* Hero Skill Section */}
             <VStack px={4} gap={4} width="100%">
                 <SectionHeading title="Hero Skill" />
@@ -376,7 +406,107 @@ const HeroForm = () => {
                     </Button>
                 </VStack>
             </VStack>
+            <Divider />
+            <Grid
+                templateAreas={{
+                    base: `"partners" "artifacts" "pets"`,
+                    md: `"partners pets" "artifacts none"`
+                }}
+                width="100%"
+                columnGap={8}
+                rowGap={4}
+            >
+                {/* Recommended Heroes Section */}
+                <GridItem area="partners" boxShadow="0 0 10px lightgray" padding={4} rounded={8}>
+                    <VStack width="100%" gap={4} maxWidth="350px">
+                        <SectionHeading title="Partners" />
+                        <SearchBar data={heroData.getAllHeroes} placeholder="Enter hero name" list={partners} appendItem={appendPartner} />
+                        <UnorderedList
+                            margin={0}
+                            listStyleType="none"
+                            display="flex"
+                            gap={6}
+                            flexWrap="wrap"
+                            justifyContent="flex-start"
+                            width={{ base: "100%", md: "300px" }}
+                        >
+                            {partners.map((partner, partnerIdx) => (
+                                <ListItem
+                                    cursor="pointer"
+                                    _hover={{ transform: "scale(1.2)" }}
+                                    transition="transform 0.3s ease-in-out"
+                                    key={partner.id}
+                                    onClick={() => removePartner(partnerIdx)}>
+                                    <Box width="50px">
+                                        <Image src={`https://d3bhl6gkk81cq1.cloudfront.net/hero-avatar/${partner.value}.webp`} alt={`${partner.value} image`} />
+                                    </Box>
+                                    <Text fontWeight="bold">{partner.value}</Text>
+                                </ListItem>
+                            ))}
+                        </UnorderedList>
+                    </VStack>
+                </GridItem>
 
+                <GridItem area="artifacts">
+                    <GridItem area="pets" boxShadow="0 0 10px lightgray" padding={4} rounded={8}>
+                        <VStack width="100%" gap={4} maxWidth="350px">
+                            <SectionHeading title="Artifacts" />
+                            <SearchBar data={artifactData.getAllArtifacts} placeholder="Enter artifact name" list={pets} appendItem={appendArtifact} />
+                            <UnorderedList margin={0} listStyleType="none" display="flex" gap={6} flexWrap="wrap" justifyContent="flex-start" width="100%">
+                                {artifacts.map((artifact, artifactIdx) => (
+                                    <ListItem
+                                        cursor="pointer"
+                                        _hover={{ transform: "scale(1.2)" }}
+                                        transition="transform 0.3s ease-in-out"
+                                        key={artifact.id}
+                                        onClick={() => removeArtifact(artifactIdx)}
+                                        width="100px"
+                                        display="flex"
+                                        flexDirection="column"
+                                        alignItems="center"
+                                    >
+                                        <Box width="50px">
+                                            <Image src={`https://d3bhl6gkk81cq1.cloudfront.net/artifacts/${artifact.value}.webp`} alt={`${artifact.value} image`} />
+                                        </Box>
+                                        <Text fontWeight="bold" textAlign="center">{artifact.value}</Text>
+                                    </ListItem>
+                                ))}
+                            </UnorderedList>
+                        </VStack>
+                    </GridItem>
+                </GridItem>
+
+                {/* Recommended Pets Section */}
+                <GridItem area="pets" boxShadow="0 0 10px lightgray" padding={4} rounded={8}>
+                    <VStack width="100%" gap={4} maxWidth="350px">
+                        <SectionHeading title="Pets" />
+                        <SearchBar data={petData.getAllPets} placeholder="Enter pet name" list={pets} appendItem={appendPet} />
+                        <UnorderedList margin={0} listStyleType="none" display="flex" gap={6} flexWrap="wrap" justifyContent="flex-start" width="100%">
+                            {pets.map((pet, petIdx) => (
+                                <ListItem
+                                    cursor="pointer"
+                                    _hover={{ transform: "scale(1.2)" }}
+                                    transition="transform 0.3s ease-in-out"
+                                    key={pet.id}
+                                    onClick={() => removePet(petIdx)}
+                                    width="100px"
+                                    display="flex"
+                                    flexDirection="column"
+                                    alignItems="center"
+                                >
+                                    <Box width="50px">
+                                        <Image src={`https://d3bhl6gkk81cq1.cloudfront.net/pets/${pet.value}.webp`} alt={`${pet.value} image`} />
+                                    </Box>
+                                    <Text fontWeight="bold" textAlign="center">{pet.value}</Text>
+                                </ListItem>
+                            ))}
+                        </UnorderedList>
+                    </VStack>
+                </GridItem>
+            </Grid>
+
+
+            <Divider />
             {/* Svaing Button */}
             <Button type="submit" colorScheme="teal" variant="outline" alignSelf="flex-start" ml={4}>
                 Save Hero
